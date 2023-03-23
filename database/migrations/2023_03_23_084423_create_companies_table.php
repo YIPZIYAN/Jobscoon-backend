@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('contact_number');
             $table->string('reg_no');
-            $table->string('location');
+            $table->longText('location');
             $table->timestamps();
         });
     }
