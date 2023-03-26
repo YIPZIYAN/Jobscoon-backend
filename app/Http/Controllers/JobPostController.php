@@ -13,9 +13,7 @@ class JobPostController extends Controller
      */
     public function index()
     {
-        $posts = JobPost::all();
-
-        return response()->json($posts);
+        return JobPost::all();
     }
 
     /**
@@ -31,15 +29,15 @@ class JobPostController extends Controller
      */
     public function store(StoreJobPostRequest $request)
     {
-        //
+        return JobPost::create($request->all());
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(JobPost $jobPost)
+    public function show(JobPost $jobPost = null, $id)
     {
-        //
+        return JobPost::findOrFail($id);
     }
 
     /**
