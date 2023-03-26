@@ -15,7 +15,8 @@ return new class extends Migration
         Schema::create('job_posts', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->integer('salary');
+            $table->integer('salary_lower');
+            $table->integer('salary_upper');
             $table->string('type');
             $table->string('shift');
             $table->longText('description');

@@ -13,7 +13,9 @@ class JobPostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = JobPost::all();
+
+        return response()->json($posts);
     }
 
     /**
