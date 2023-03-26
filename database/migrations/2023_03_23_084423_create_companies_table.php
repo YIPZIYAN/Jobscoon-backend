@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('contact_number');
             $table->string('reg_no');
             $table->longText('location');
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }
