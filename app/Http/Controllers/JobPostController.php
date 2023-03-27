@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\JobPost;
 use App\Http\Requests\StoreJobPostRequest;
 use App\Http\Requests\UpdateJobPostRequest;
+use Carbon\Carbon;
 
 class JobPostController extends Controller
 {

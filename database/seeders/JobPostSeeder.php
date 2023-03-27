@@ -23,6 +23,8 @@ class JobPostSeeder extends Seeder
             'shift' => 'Monday to Friday',
             'description' => 'We are looking for a fullstack developer in mobile application development. Flutter and React Native preferable.',
             'company_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now(),
         ],
         [
             'title' => 'UI/UX Designer',
@@ -32,6 +34,8 @@ class JobPostSeeder extends Seeder
             'shift' => 'Monday to Friday',
             'description' => 'Familiar with Figma.',
             'company_id' => 1,
+            'created_at' => now()->subMonth(),
+            'updated_at' => now(),
         ],
         [
             'title' => 'Database Administrator',
@@ -41,6 +45,8 @@ class JobPostSeeder extends Seeder
             'shift' => 'Monday to Friday',
             'description' => 'Experienced in Oracle Database',
             'company_id' => 1,
+            'created_at' => now()->subYear(),
+            'updated_at' => now(),
         ]
     ]);
     }
