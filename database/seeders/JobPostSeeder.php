@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\JobPost;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class JobPostSeeder extends Seeder
 {
@@ -13,7 +14,8 @@ class JobPostSeeder extends Seeder
      */
     public function run(): void
     {
-        JobPost::create([
+        DB::table('job_posts')->insert([
+            [
             'title' => 'Fullstack Developer',
             'salary_lower' => 5000,
             'salary_upper' => 8000,
@@ -40,6 +42,6 @@ class JobPostSeeder extends Seeder
             'description' => 'Experienced in Oracle Database',
             'company_id' => 1,
         ]
-    );
+    ]);
     }
 }
