@@ -22,3 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resource('company', CompanyController::class);
 Route::resource('jobpost', JobPostController::class);
+
+Route::restifyAuth();
