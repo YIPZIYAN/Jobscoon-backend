@@ -17,7 +17,7 @@ class JobPostSeeder extends Seeder
         DB::table('job_posts')->insert([
             [
             'title' => 'Fullstack Developer',
-            'salary_lower' => 5000,
+            'salary_lower' => 7000,
             'salary_upper' => 8000,
             'type' => 'Full-time',
             'shift' => 'Monday to Friday',
@@ -29,9 +29,9 @@ class JobPostSeeder extends Seeder
         [
             'title' => 'UI/UX Designer',
             'salary_lower' => 3000,
-            'salary_upper' => 4000,
+            'salary_upper' => 3500,
             'type' => 'Full-time',
-            'shift' => 'Monday to Friday',
+            'shift' => 'Monday to Thursday',
             'description' => 'Familiar with Figma.',
             'company_id' => 1,
             'created_at' => now()->subMonth(),
@@ -42,7 +42,7 @@ class JobPostSeeder extends Seeder
             'salary_lower' => 4000,
             'salary_upper' => 6000,
             'type' => 'Full-time',
-            'shift' => 'Monday to Friday',
+            'shift' => 'Monday to Saturday',
             'description' => 'Experienced in Oracle Database',
             'company_id' => 1,
             'created_at' => now()->subYear(),
