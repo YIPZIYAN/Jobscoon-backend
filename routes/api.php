@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\JobPostController;
 use Illuminate\Http\Request;
@@ -22,3 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resource('company', CompanyController::class);
 Route::resource('jobpost', JobPostController::class);
+// Route::post('login',[AuthController::class,'login']);
+Route::post('register',[AuthController::class,'register']);
