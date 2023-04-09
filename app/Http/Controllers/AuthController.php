@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
@@ -11,10 +12,23 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    // public function login(Type $var = null)
-    // {
-    //     # code...
-    // }
+    public function login(LoginUserRequest $request)
+    {
+        if (!Auth::attempt([
+            'email' => $request->email,
+            'password' => $request->password
+        ])) {
+            return response()->json(['errors' => 'Credentials does not match'], 401);
+        }
+
+        $user = User::where('email', $request->email)->first();
+        return response()->json([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+            'token' => $user->createToken('login')->plainTextToken,
+        ], 200);
+    }
 
     public function register(StoreUserRequest $request)
     {
@@ -37,9 +51,9 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => $request->password,
             'token' => $user->createToken('login')->plainTextToken,
-        ],200);
+        ], 200);
     }
-    
+
     // public function logout(Type $var = null)
     // {
     //     # code...
