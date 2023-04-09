@@ -29,6 +29,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     
     Route::resource('company', CompanyController::class);
     Route::resource('jobpost', JobPostController::class);
-    // Route::post('logout', [AuthController::class, 'logout']);
+    Route::post('logout', [AuthController::class, 'logout']);
 
 });
