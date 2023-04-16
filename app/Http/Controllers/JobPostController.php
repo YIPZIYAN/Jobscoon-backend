@@ -64,4 +64,9 @@ class JobPostController extends Controller
     {
         //
     }
+
+    public function FunctionName(Type $var = null)
+    {
+        # code...
+    }
 }

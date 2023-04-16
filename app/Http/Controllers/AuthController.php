@@ -14,18 +14,19 @@ class AuthController extends Controller
 {
     public function login(LoginUserRequest $request)
     {
+
         if (!Auth::attempt([
             'email' => $request->email,
             'password' => $request->password
         ])) {
-            return response()->json(['errors' => 'Credentials does not match'], 401);
+            return response()->json([
+                'errors' => 'Credentials does not match',
+            ], 401);
         }
 
         $user = User::where('email', $request->email)->first();
         return response()->json([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->password,
+            'user' => $user,
             'token' => $user->createToken('login')->plainTextToken,
         ], 200);
     }
