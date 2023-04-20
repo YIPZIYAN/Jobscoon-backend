@@ -33,11 +33,17 @@ class AuthController extends Controller
 
     public function register(StoreUserRequest $request)
     {
+        //user register
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'phone' => $request->phone,
+            'description' => $request->about,
+            'address' => $request->address,
             'password' => Hash::make($request->password),
         ]);
+
+        //employer register
 
         event(new Registered($user));
 
@@ -50,14 +56,17 @@ class AuthController extends Controller
         return response()->json([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => $request->password,
-            'token' => $user->createToken('login')->plainTextToken,
+            'phone' => $request->phone,
+            'description' => $request->about,
+            'address' => $request->address,
+            'password' => Hash::make($request->password),
         ], 200);
     }
 
     public function logout()
     {
-        Auth::user()->currentAccessToken()->delete();
+
+        User::class(Auth::user())->currentAccessToken()->delete;
 
         return response()->json([
         'message' => 'logout successfully',

@@ -34,6 +34,16 @@ class CompanyController extends Controller
         //
     }
 
+    public function validateCompany(StoreCompanyRequest $request)
+    {
+        return response();
+    }
+
+    public function showCompanyList()
+    {
+        return Company::all('name');
+    }
+
     /**
      * Display the specified resource.
      */

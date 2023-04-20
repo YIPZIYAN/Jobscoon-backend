@@ -15,7 +15,12 @@ class UserSeeder extends Seeder
     {
         User::factory()->create([
             'name' => 'Kun',
+            'phone' => '0123456789',
             'email' => 'test@example.com',
+            'description' =>'I am August Kun who is an Idol Producer. I have experienced in Entertainment about 2.5 years. I good in sing, dance, rap and play basketball.',
+            'address' => fake()->address,
+            'is_employer' => true,
+            'company_id' => 1,
         ]);
 
         User::factory(10)->create();

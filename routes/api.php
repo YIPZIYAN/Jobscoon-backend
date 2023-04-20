@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\JobPostController;
+use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('login', [AuthController::class, 'login']);
 Route::post('register', [AuthController::class, 'register']);
+Route::post('validatecompany',[CompanyController::class,'validateCompany']);
+Route::post('registercompany',[CompanyController::class,'store']);
+Route::get('companylist',[CompanyController::class,'showCompanyList']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
     
