@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Http\Controllers\CareerDevelopmentApplicationController;
+use App\Models\CareerDevelopmentApplication;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +14,5 @@ class CareerDevelopmentApplicationSeeder extends Seeder
      */
     public function run(): void
     {
-        //
     }
 }
