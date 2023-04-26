@@ -14,5 +14,9 @@ class CareerDevelopmentApplicationSeeder extends Seeder
      */
     public function run(): void
     {
+        CareerDevelopmentApplication::create([
+            'user_id' => 1,
+            'career_development_id' => 1,
+        ]);
     }
 }
