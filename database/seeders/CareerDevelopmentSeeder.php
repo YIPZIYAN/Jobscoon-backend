@@ -16,8 +16,8 @@ class CareerDevelopmentSeeder extends Seeder
     {
         CareerDevelopment::create([
             'title' => 'Idol Producer 2.0',
-            'date_start' => '11/05/2023',
-            'date_end' => '12/05/2023',
+            'date_start' => '2022-01-21',
+            'date_end' => '2023-01-20',
             'start_time' => '11:00',
             'end_time' => '13:00',
             'type' => 'physical',
