@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Company;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -27,8 +28,14 @@ class StoreUserRequest extends FormRequest
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'phone' => ['required', 'digits_between:9,10', 'numeric'],
             'description' => ['nullable', 'string'],
-            'address' => ['nullable','string','nullable'],
+            'address' => ['nullable', 'string', 'nullable'],
             'password' => ['required', 'confirmed'],
+
+            'company_name' => ['exclude_unless:is_employer,true', 'required', 'string', 'max:255'],
+            'contact_number' => ['exclude_unless:is_employer,true', 'required', 'numeric'], // 'digits_between:9,10'
+            'reg_no' => ['exclude_unless:is_employer,true', 'required', 'numeric', 'digits:12', 'unique:' . Company::class],
+            'company_location' => ['exclude_unless:is_employer,true', 'required', 'string'],
+            'company_description' => ['exclude_unless:is_employer,true', 'nullable', 'string'],
         ];
     }
 }
