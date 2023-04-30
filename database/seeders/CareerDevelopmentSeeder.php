@@ -51,7 +51,7 @@ class CareerDevelopmentSeeder extends Seeder
                 'date_end' => '2023-08-02',
                 'start_time' => '11:00',
                 'end_time' => '13:00',
-                'type' => 'online',
+                'type' => 'virtual',
                 'link' => 'https://www.crushonjob.com',
                 'location' => '',
                 'description' => 'Let the employee have more interest on their job',
