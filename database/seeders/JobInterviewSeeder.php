@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\JobInterview;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class JobInterviewSeeder extends Seeder
 {
@@ -13,7 +14,7 @@ class JobInterviewSeeder extends Seeder
      */
     public function run(): void
     {
-        JobInterview::create(
+        DB::table('job_interviews')->insert([
         [
             'user_id' => 1,
             'job_post_id' => 1,
@@ -52,6 +53,7 @@ class JobInterviewSeeder extends Seeder
             'description' => 'We will have some test on your Oracle database skill',
             'created_at' => now(),
             'updated_at' => now(),
-        ],);
+        ]
+    ]);
     }
 }

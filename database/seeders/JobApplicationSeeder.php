@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\JobApplication;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class JobApplicationSeeder extends Seeder
 {
@@ -13,7 +14,7 @@ class JobApplicationSeeder extends Seeder
      */
     public function run(): void
     {
-        JobApplication::create([
+        DB::table('job_applications')->insert([[
             'job_post_id' => 1,
             'user_id' => 1,
             'status' => 'pending',
@@ -27,6 +28,6 @@ class JobApplicationSeeder extends Seeder
             'job_post_id' => 2,
             'user_id' => 3,
             'status' => 'decline',
-        ]);
+        ]]);
     }
 }
