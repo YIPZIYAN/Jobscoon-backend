@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\StoreUserRequest;
+use App\Models\Company;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -25,6 +26,8 @@ class AuthController extends Controller
         }
 
         $user = User::where('email', $request->email)->first();
+        // Auth::login($user);
+
         return response()->json([
             'user' => $user,
             'token' => $user->createToken('login')->plainTextToken,
@@ -38,16 +41,30 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
-            'description' => $request->about,
+            'description' => $request->description,
             'address' => $request->address,
             'password' => Hash::make($request->password),
         ]);
 
         //employer register
+        if ($request->is_employer) {
+
+            //new company register
+            $company = Company::create([
+                'name' => $request->company_name,
+                'contact_number' => $request->contact_number,
+                'reg_no' => $request->reg_no,
+                'location' => $request->company_location,
+                'description' => $request->company_description,
+            ]);
+
+            $user->is_employer = true;
+            $user->company()->associate($company)->save();
+        }
 
         event(new Registered($user));
 
-        Auth::login($user);
+        // Auth::login($user);
 
         // $response = array_merge($request->all(), [
         //     'token' => $user->createToken('login')->plainTextToken,
@@ -69,7 +86,7 @@ class AuthController extends Controller
         User::class(Auth::user())->currentAccessToken()->delete;
 
         return response()->json([
-        'message' => 'logout successfully',
+            'message' => 'logout successfully',
         ], 200);
     }
 }
