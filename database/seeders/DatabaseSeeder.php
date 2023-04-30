@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\CareerDevelopmentApplication;
+use App\Models\JobInterview;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,6 +21,8 @@ class DatabaseSeeder extends Seeder
             JobPostSeeder::class,
             CareerDevelopmentSeeder::class,
             CareerDevelopmentApplicationSeeder::class,
+            JobApplicationSeeder::class,
+            JobInterviewSeeder::class,
         ]);
     }
 }
