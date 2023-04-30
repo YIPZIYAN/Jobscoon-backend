@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Company;
 use App\Http\Requests\StoreCompanyRequest;
 use App\Http\Requests\UpdateCompanyRequest;
+use Illuminate\Auth\Events\Validated;
 
 class CompanyController extends Controller
 {
@@ -32,6 +33,16 @@ class CompanyController extends Controller
     public function store(StoreCompanyRequest $request)
     {
         //
+    }
+
+    public function validateCompany(StoreCompanyRequest $request)
+    {
+        return response()->json($request,200);
+    }
+
+    public function showCompanyList()
+    {
+        return Company::all('name');
     }
 
     /**
