@@ -8,4 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class CareerDevelopment extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'date_start',
+        'date_end',
+        'start_time',
+        'end_time',
+        'type',
+        'link',
+        'location',
+        'description',
+        'capacity',
+    ];
 }
