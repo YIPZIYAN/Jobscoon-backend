@@ -21,7 +21,8 @@ class JobPost extends Model
     ];
 
     protected $appends = [
-        'post_at'
+        'post_at',
+        'salary',
     ];
 
 
@@ -33,6 +34,11 @@ class JobPost extends Model
     public function getPostAtAttribute()
     {
         return $this->created_at->diffForHumans();
+    }
+
+    public function getSalaryAttribute()
+    {
+        return strval($this->salary_lower)." - ".strval($this->salary_upper);
     }
 
 }
