@@ -35,4 +35,14 @@ class JobPost extends Model
         return $this->created_at->diffForHumans();
     }
 
+    public function jobInterviews()
+    {
+        return $this->hasMany(JobInterview::class);
+    }
+
+    public function jobApplications()
+    {
+        return $this->hasMany(JobApplication::class);
+    }
+
 }
