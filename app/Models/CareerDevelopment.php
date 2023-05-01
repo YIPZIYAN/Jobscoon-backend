@@ -26,4 +26,8 @@ class CareerDevelopment extends Model
         return $this->belongsToMany(User::class);
     }
 
+    public function careerDevelopmentApplications()
+    {
+        return $this->hasMany(CareerDevelopmentApplication::class);
+    }
 }

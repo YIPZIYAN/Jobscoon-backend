@@ -53,4 +53,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(CareerDevelopment::class);
     }
+    public function careerDevelopmentApplications()
+    {
+        return $this->hasMany(CareerDevelopmentApplication::class);
+    }
 }
