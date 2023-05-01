@@ -21,10 +21,6 @@ class CareerDevelopment extends Model
         'description',
         'capacity',
     ];
-    public function users()
-    {
-        return $this->belongsToMany(User::class);
-    }
 
     public function careerDevelopmentApplications()
     {
