@@ -18,5 +18,7 @@ class CareerDevelopmentApplicationSeeder extends Seeder
             'user_id' => 1,
             'career_development_id' => 1,
         ]);
+        CareerDevelopmentApplication::factory(10)->create();
+
     }
 }

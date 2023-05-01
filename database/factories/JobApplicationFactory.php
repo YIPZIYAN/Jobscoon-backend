@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
+use App\Models\JobPost;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,6 +11,11 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class JobApplicationFactory extends Factory
 {
+    private const STATUS = [
+        'pending',
+        'accept',
+        'decline',
+    ];
     /**
      * Define the model's default state.
      *
@@ -16,8 +23,12 @@ class JobApplicationFactory extends Factory
      */
     public function definition(): array
     {
+        $status = fake()->randomElement(SELF::STATUS);
         return [
-            //
+            'job_post_id' => JobPost::all()->random()->id,
+            'user_id' => User::all()->random()->id,
+            'status' => $status,
+        
         ];
     }
 }

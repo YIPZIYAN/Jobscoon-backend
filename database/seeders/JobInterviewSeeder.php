@@ -55,5 +55,6 @@ class JobInterviewSeeder extends Seeder
             'updated_at' => now(),
         ]
     ]);
+    JobInterview::factory(10)->create();
     }
 }
