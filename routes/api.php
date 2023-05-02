@@ -5,6 +5,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\JobPostController;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +36,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     
     Route::resource('company', CompanyController::class);
     Route::resource('jobpost', JobPostController::class);
+    Route::post('autologin',[AuthController::class,'autoLogin']);
     Route::post('logout', [AuthController::class, 'logout']);
 
 });

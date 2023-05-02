@@ -89,4 +89,12 @@ class AuthController extends Controller
             'message' => 'logout successfully',
         ], 200);
     }
+
+    public function autoLogin(Request $request)
+    {
+        $user = User::findOrFail($request->id);
+        Auth::login($user);
+        
+        return response()->json($user);
+    }
 }
