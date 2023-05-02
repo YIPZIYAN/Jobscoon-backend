@@ -44,7 +44,7 @@ class JobPostFactory extends Factory
             'type' => $type,
             'shift' => $shift,
             'description' => fake()->paragraph(),
-            'company_id' => Company::all()->id->random(),
+            'company_id' => Company::all()->random()->id,
             
         ];
     }
