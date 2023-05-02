@@ -21,7 +21,8 @@ class JobPost extends Model
     ];
 
     protected $appends = [
-        'post_at'
+        'post_at',
+        'salary',
     ];
 
 
@@ -43,6 +44,10 @@ class JobPost extends Model
     public function jobApplications()
     {
         return $this->hasMany(JobApplication::class);
+
+public function getSalaryAttribute()
+    {
+        return strval($this->salary_lower)." - ".strval($this->salary_upper);
     }
 
 }
