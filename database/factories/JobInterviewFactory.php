@@ -31,6 +31,8 @@ class JobInterviewFactory extends Factory
         }  
         if ($type != 'virtual') {
             $location = fake()->address();
+        }else{
+            $location = null;
         }
         return [
             'user_id' => User::all()->random()->id,
@@ -40,7 +42,7 @@ class JobInterviewFactory extends Factory
             'end_time' => $endTime,
             'type' => $type,
             'link' => fake()->url(),
-            'location' => fake()->address(),
+            'location' => $location,
             'description' => fake()->paragraph(),
         ];
     }

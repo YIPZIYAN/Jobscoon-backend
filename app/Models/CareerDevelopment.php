@@ -22,8 +22,8 @@ class CareerDevelopment extends Model
         'capacity',
     ];
 
-    public function careerDevelopmentApplications()
+    public function users()
     {
-        return $this->hasMany(CareerDevelopmentApplication::class);
+        return $this->belongsToMany(User::class);
     }
 }
