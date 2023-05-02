@@ -13,7 +13,7 @@ class JobInterviewController extends Controller
      */
     public function index()
     {
-        //
+        JobInterview::all();
     }
 
     /**
@@ -29,15 +29,15 @@ class JobInterviewController extends Controller
      */
     public function store(StoreJobInterviewRequest $request)
     {
-        //
+        JobInterview::create($request->all());
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(JobInterview $jobInterview)
+    public function show(JobInterview $jobInterview = null,$id)
     {
-        //
+        JobInterview::findOrfail($id);
     }
 
     /**

@@ -13,7 +13,7 @@ class CareerDevelopmentController extends Controller
      */
     public function index()
     {
-        //
+        return CareerDevelopment::all();
     }
 
     /**
@@ -21,7 +21,7 @@ class CareerDevelopmentController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -29,15 +29,15 @@ class CareerDevelopmentController extends Controller
      */
     public function store(StoreCareerDevelopmentRequest $request)
     {
-        //
+        return CareerDevelopment::create($request->all());
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(CareerDevelopment $careerDevelopment)
+    public function show(CareerDevelopment $careerDevelopment = null,$id)
     {
-        //
+        return CareerDevelopment::findOrFail($id);
     }
 
     /**
