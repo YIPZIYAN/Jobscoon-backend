@@ -26,7 +26,7 @@ class AuthController extends Controller
         }
 
         $user = User::where('email', $request->email)->first();
-        // Auth::login($user);
+        Auth::login($user);
 
         return response()->json([
             'user' => $user,
@@ -93,7 +93,6 @@ class AuthController extends Controller
     public function autoLogin(Request $request)
     {
         $user = User::findOrFail($request->id);
-        Auth::login($user);
         
         return response()->json($user);
     }
