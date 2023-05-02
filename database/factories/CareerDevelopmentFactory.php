@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Company;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -44,6 +45,7 @@ class CareerDevelopmentFactory extends Factory
             'location' => $location,
             'description' => fake()->paragraph(),
             'capacity' => fake()->numberBetween(0, 200),
+            'company_id'=>Company::all()->random()->id,
         ];
     }
 }

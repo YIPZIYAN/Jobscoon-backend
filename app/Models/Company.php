@@ -21,4 +21,9 @@ class Company extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function careerDevelopments()
+    {
+        return $this->hasMany(CareerDevelopment::class);
+    }
 }
