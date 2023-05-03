@@ -13,7 +13,7 @@ class JobApplicationController extends Controller
      */
     public function index()
     {
-        //
+        JobApplication::all();
     }
 
     /**
@@ -29,15 +29,15 @@ class JobApplicationController extends Controller
      */
     public function store(StoreJobApplicationRequest $request)
     {
-        //
+        JobApplication::create($request->all());
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(JobApplication $jobApplication)
+    public function show(JobApplication $jobApplication = null,$id)
     {
-        //
+        JobApplication::findOrFail($id);
     }
 
     /**

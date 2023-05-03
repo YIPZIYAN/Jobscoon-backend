@@ -21,7 +21,7 @@ class CareerDevelopmentApplicationController extends Controller
      */
     public function create()
     {
-        //
+        return CareerDevelopmentApplication::all();
     }
 
     /**
@@ -29,15 +29,16 @@ class CareerDevelopmentApplicationController extends Controller
      */
     public function store(StoreCareerDevelopmentApplicationRequest $request)
     {
-        //
+        return CareerDevelopmentApplication::create($request->all());
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(CareerDevelopmentApplication $careerDevelopmentApplication)
+    public function show(CareerDevelopmentApplication $careerDevelopmentApplication = null, $id)
     {
-        //
+        return CareerDevelopmentApplication::findOrFail($id);
+
     }
 
     /**

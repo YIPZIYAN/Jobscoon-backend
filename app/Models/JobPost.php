@@ -36,6 +36,15 @@ class JobPost extends Model
         return $this->created_at->diffForHumans();
     }
 
+    public function jobInterviews()
+    {
+        return $this->hasMany(JobInterview::class);
+    }
+
+    public function jobApplications()
+    {
+        return $this->hasMany(JobApplication::class);
+    }
     public function getSalaryAttribute()
     {
         return strval($this->salary_lower)." - ".strval($this->salary_upper);

@@ -8,4 +8,27 @@ use Illuminate\Database\Eloquent\Model;
 class CareerDevelopment extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'date_start',
+        'date_end',
+        'start_time',
+        'end_time',
+        'type',
+        'link',
+        'location',
+        'description',
+        'capacity',
+    ];
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
 }
