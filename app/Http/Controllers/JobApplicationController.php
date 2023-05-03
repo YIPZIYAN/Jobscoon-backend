@@ -14,7 +14,7 @@ class JobApplicationController extends Controller
      */
     public function index()
     {
-        return JobApplication::with('jobPost')
+        return JobApplication::with('jobPost.company')
         ->where('user_id',Auth::user()->id)
         ->orderByDesc('updated_at')
         ->get();
