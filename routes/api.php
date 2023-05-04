@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\JobApplicationController;
+use App\Http\Controllers\JobInterviewController;
 use App\Http\Controllers\JobPostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -40,5 +41,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
 
     Route::resource('jobapplication',JobApplicationController::class);
+    Route::resource('jobinterview',JobInterviewController::class);
 
 });

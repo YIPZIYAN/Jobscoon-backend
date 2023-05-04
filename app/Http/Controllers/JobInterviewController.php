@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\JobInterview;
 use App\Http\Requests\StoreJobInterviewRequest;
 use App\Http\Requests\UpdateJobInterviewRequest;
+use Illuminate\Support\Facades\Auth;
 
 class JobInterviewController extends Controller
 {
@@ -13,7 +14,11 @@ class JobInterviewController extends Controller
      */
     public function index()
     {
-        JobInterview::all();
+        return JobInterview::with('jobPost.company')
+        ->where('user_id',Auth::user()->id)
+        ->orderByDesc('date')
+        ->orderByDesc('start_time')
+        ->get();
     }
 
     /**
