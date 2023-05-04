@@ -26,7 +26,7 @@ class JobApplicationFactory extends Factory
         $status = fake()->randomElement(SELF::STATUS);
         return [
             'job_post_id' => JobPost::all()->random()->id,
-            'user_id' => User::all()->random()->id,
+            'user_id' => User::where('is_employer',false)->get()->random()->id,
             'status' => $status,
         
         ];

@@ -16,21 +16,21 @@ class JobApplicationSeeder extends Seeder
     {
         DB::table('job_applications')->insert([[
             'job_post_id' => 1,
-            'user_id' => 1,
+            'user_id' => 2,
             'status' => 'pending',
             'created_at' => now(),
             'updated_at' => now(),
         ],
         [
-            'job_post_id' => 1,
+            'job_post_id' => 2,
             'user_id' => 2,
             'status' => 'accept',
             'created_at' => now(),
             'updated_at' => now(),
         ],
         [
-            'job_post_id' => 2,
-            'user_id' => 3,
+            'job_post_id' => 3,
+            'user_id' => 2,
             'status' => 'decline',
             'created_at' => now(),
             'updated_at' => now(),
