@@ -18,6 +18,7 @@ class JobInterview extends Model
         'link',
         'location',
         'description',
+        'status',
     ];
 
     protected $appends = [

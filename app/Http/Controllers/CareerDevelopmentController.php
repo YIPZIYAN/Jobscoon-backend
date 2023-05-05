@@ -13,7 +13,7 @@ class CareerDevelopmentController extends Controller
      */
     public function index()
     {
-        return CareerDevelopment::all();
+        return CareerDevelopment::with('company')->get();
     }
 
     /**

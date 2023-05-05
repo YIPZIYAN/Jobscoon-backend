@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CareerDevelopmentController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\JobInterviewController;
@@ -42,5 +43,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
     Route::resource('jobapplication',JobApplicationController::class);
     Route::resource('jobinterview',JobInterviewController::class);
+    Route::resource('careerdev',CareerDevelopmentController::class);
 
 });

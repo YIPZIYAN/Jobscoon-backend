@@ -24,6 +24,7 @@ class CareerDevelopmentFactory extends Factory
     {
         $type = fake()->randomElement(SELF::TYPE);
         $location = "";
+        $link = fake()->url();
         $startDate = fake()->dateTimeBetween('+1 month', '+6 month');
         $endDate = fake()->dateTimeBetween($startDate,'+6 month');
         $startTime = fake()->time();
@@ -33,6 +34,7 @@ class CareerDevelopmentFactory extends Factory
         }        
         if ($type != 'virtual') {
             $location = fake()->address();
+            $link = null;
         }
         return [
             'title' => fake()->sentence(),
@@ -41,10 +43,10 @@ class CareerDevelopmentFactory extends Factory
             'start_time' => $startTime,
             'end_time' => $endTime,
             'type' => $type,
-            'link' => fake()->url(),
+            'link' => $link,
             'location' => $location,
             'description' => fake()->paragraph(),
-            'capacity' => fake()->numberBetween(0, 200),
+            'capacity' => fake()->numberBetween(50, 200),
             'company_id'=>Company::all()->random()->id,
         ];
     }
