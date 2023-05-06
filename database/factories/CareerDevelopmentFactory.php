@@ -37,7 +37,7 @@ class CareerDevelopmentFactory extends Factory
             $link = null;
         }
         return [
-            'title' => fake()->sentence(),
+            'title' => fake()->word,
             'date_start' => $startDate,
             'date_end' => $endDate,
             'start_time' => $startTime,

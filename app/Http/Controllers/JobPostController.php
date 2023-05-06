@@ -6,6 +6,7 @@ use App\Models\JobPost;
 use App\Http\Requests\StoreJobPostRequest;
 use App\Http\Requests\UpdateJobPostRequest;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class JobPostController extends Controller
 {
@@ -63,6 +64,16 @@ class JobPostController extends Controller
     public function destroy(JobPost $jobPost)
     {
         //
+    }
+
+    public function applyJob($id)
+    {
+        $jobPost = JobPost::findOrFail($id);
+        $jobPost->users()->attach(Auth::user()->id,[
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        return response()->json();
     }
 
 }

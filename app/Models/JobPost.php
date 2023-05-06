@@ -31,6 +31,11 @@ class JobPost extends Model
         return $this->belongsTo(Company::class);
     }
 
+    public function users()
+    {
+        return $this->belongsToMany(User::class,'job_applications');
+    }
+
     public function getPostAtAttribute()
     {
         return $this->created_at->diffForHumans();
