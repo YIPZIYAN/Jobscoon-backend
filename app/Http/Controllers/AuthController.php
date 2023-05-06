@@ -49,14 +49,18 @@ class AuthController extends Controller
         //employer register
         if ($request->is_employer) {
 
-            //new company register
-            $company = Company::create([
-                'name' => $request->company_name,
-                'contact_number' => $request->contact_number,
-                'reg_no' => $request->reg_no,
-                'location' => $request->company_location,
-                'description' => $request->company_description,
-            ]);
+            if ($request->is_new_company) {
+                //new company register
+                $company = Company::firstOrCreate([
+                    'name' => $request->company_name,
+                    'contact_number' => $request->contact_number,
+                    'reg_no' => $request->reg_no,
+                    'location' => $request->company_location,
+                    'description' => $request->company_description,
+                ]);
+            } else {
+                $company = Company::where('name', 'LIKE', "%{$request->search_company}%")->first();
+            }
 
             $user->is_employer = true;
             $user->company()->associate($company)->save();
@@ -94,7 +98,7 @@ class AuthController extends Controller
     public function autoLogin(Request $request)
     {
         $user = User::findOrFail($request->id);
-        
+
         return response()->json($user);
     }
 }

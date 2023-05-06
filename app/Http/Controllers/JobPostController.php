@@ -39,7 +39,7 @@ class JobPostController extends Controller
      */
     public function show(JobPost $jobPost = null, $id)
     {
-        return JobPost::findOrFail($id);
+        return JobPost::with('company')->findOrFail($id);
     }
 
     /**
