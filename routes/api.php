@@ -38,8 +38,13 @@ Route::post('companylist',[CompanyController::class,'showCompanyList']);
 Route::middleware(['auth:sanctum'])->group(function () {
     
     Route::resource('company', CompanyController::class);
+
     Route::resource('jobpost', JobPostController::class);
     Route::post('applyjob/{id}',[JobPostController::class,'applyJob']);
+
+    Route::post('acceptinterview/{id}',[JobInterviewController::class,'acceptInterview']);
+    Route::post('declineinterview/{id}',[JobInterviewController::class,'declineInterview']);
+    
     Route::post('autologin',[AuthController::class,'autoLogin']);
     Route::post('logout', [AuthController::class, 'logout']);
 
