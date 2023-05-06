@@ -25,7 +25,8 @@ class StoreCompanyRequest extends FormRequest
         return [
             'company_name' => ['required', 'string', 'max:255'],
             'contact_number' => ['required', 'numeric'], // 'digits_between:9,10'
-            'reg_no' => ['required', 'numeric', 'digits:12','unique:' . Company::class],
+            'company_email' => ['required', 'email'],
+            'reg_no' => ['required', 'numeric', 'digits:12', 'unique:' . Company::class],
             'company_location' => ['required', 'string'],
             'company_description' => ['nullable', 'string'],
         ];

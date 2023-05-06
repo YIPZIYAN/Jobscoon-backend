@@ -36,6 +36,7 @@ class StoreUserRequest extends FormRequest
 
             'company_name' => ['exclude_unless:is_new_company,true', 'required', 'string', 'max:255'],
             'contact_number' => ['exclude_unless:is_new_company,true', 'required', 'numeric'], // 'digits_between:9,10'
+            'company_email' => ['exclude_unless:is_new_company,true', 'required','email'],
             'reg_no' => ['exclude_unless:is_new_company,true', 'required', 'numeric', 'digits:12', 'unique:' . Company::class],
             'company_location' => ['exclude_unless:is_new_company,true', 'required', 'string'],
             'company_description' => ['exclude_unless:is_new_company,true', 'nullable', 'string'],
