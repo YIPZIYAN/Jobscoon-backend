@@ -52,7 +52,7 @@ class JobPost extends Model
     }
     public function getSalaryAttribute()
     {
-        return strval($this->salary_lower)." - ".strval($this->salary_upper);
+        return "RM ".strval($this->salary_lower)." - ".strval($this->salary_upper);
     }
 
 }
