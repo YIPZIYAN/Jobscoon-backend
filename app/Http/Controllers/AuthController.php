@@ -49,7 +49,7 @@ class AuthController extends Controller
         //employer register
         if ($request->is_employer) {
 
-            if ($request->is_new_company) {
+            if ($request->is_new_company=="true") {
                 //new company register
                 $company = Company::firstOrCreate([
                     'name' => $request->company_name,
