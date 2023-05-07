@@ -54,6 +54,7 @@ class AuthController extends Controller
                 $company = Company::firstOrCreate([
                     'name' => $request->company_name,
                     'contact_number' => $request->contact_number,
+                    'email' => $request->company_email,
                     'reg_no' => $request->reg_no,
                     'location' => $request->company_location,
                     'description' => $request->company_description,
