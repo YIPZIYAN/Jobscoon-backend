@@ -26,11 +26,11 @@ class CareerDevelopmentFactory extends Factory
     {
 
         $imagePath =[
-            'storage/app/public/images/cd1.jpg',
-            'storage/app/public/images/cd2.png',
-            'storage/app/public/images/cd3.jpg',
-            'storage/app/public/images/cd4.png',
-            'storage/app/public/images/cd5.png',
+            'app/storage/images/cd1.jpg',
+            'app/storage/images/cd2.png',
+            'app/storage/images/cd3.jpg',
+            'app/storage/images/cd4.png',
+            'app/storage/images/cd5.png',
 
 
         ];
