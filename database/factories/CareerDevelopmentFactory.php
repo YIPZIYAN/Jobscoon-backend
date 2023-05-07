@@ -16,6 +16,7 @@ class CareerDevelopmentFactory extends Factory
         'physical',
         'virtual',
     ];
+
     /**
      * Define the model's default state.
      *
@@ -24,6 +25,15 @@ class CareerDevelopmentFactory extends Factory
     public function definition(): array
     {
 
+        $imagePath =[
+            'storage/app/public/images/cd1.jpg',
+            'storage/app/public/images/cd2.png',
+            'storage/app/public/images/cd3.jpg',
+            'storage/app/public/images/cd4.png',
+            'storage/app/public/images/cd5.png',
+
+
+        ];
         $type = fake()->randomElement(SELF::TYPE);
         $location = "";
         $link = fake()->url();
@@ -38,12 +48,6 @@ class CareerDevelopmentFactory extends Factory
             $location = fake()->address();
             $link = null;
         }
-        $imagePath =public_path('images/cd2.png');
-        if (file_exists($imagePath)) {
-            $imagePath = true;
-        } else {
-            $imagePath = false;
-        }
         return [
             'title' => fake()->word,
             'date_start' => $startDate,
@@ -55,7 +59,7 @@ class CareerDevelopmentFactory extends Factory
             'location' => $location,
             'description' => fake()->paragraph(),
             'capacity' => fake()->numberBetween(50, 200),
-            'image' => base64_encode(file_get_contents($imagePath)),
+            'image' => fake()->randomElement($imagePath),
             'company_id' => Company::all()->random()->id,
         ];
     }
