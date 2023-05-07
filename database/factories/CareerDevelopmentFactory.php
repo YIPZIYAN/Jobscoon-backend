@@ -2,9 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\CareerDevelopment;
 use App\Models\Company;
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use Illuminate\Support\Facades\Storage;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CareerDevelopment>
  */
@@ -22,19 +23,26 @@ class CareerDevelopmentFactory extends Factory
      */
     public function definition(): array
     {
+
         $type = fake()->randomElement(SELF::TYPE);
         $location = "";
         $link = fake()->url();
         $startDate = fake()->dateTimeBetween('+1 month', '+6 month');
-        $endDate = fake()->dateTimeBetween($startDate,'+6 month');
+        $endDate = fake()->dateTimeBetween($startDate, '+6 month');
         $startTime = fake()->time();
         $endTime = fake()->time();
-        if($endTime <= $startTime && $endDate <= $startDate){
+        if ($endTime <= $startTime && $endDate <= $startDate) {
             $endTime = fake()->dateTimeBetween($startTime, '+1 day');
-        }        
+        }
         if ($type != 'virtual') {
             $location = fake()->address();
             $link = null;
+        }
+        $imagePath =public_path('images/cd2.png');
+        if (file_exists($imagePath)) {
+            $imagePath = true;
+        } else {
+            $imagePath = false;
         }
         return [
             'title' => fake()->word,
@@ -47,7 +55,8 @@ class CareerDevelopmentFactory extends Factory
             'location' => $location,
             'description' => fake()->paragraph(),
             'capacity' => fake()->numberBetween(50, 200),
-            'company_id'=>Company::all()->random()->id,
+            'image' => base64_encode(file_get_contents($imagePath)),
+            'company_id' => Company::all()->random()->id,
         ];
     }
 }
