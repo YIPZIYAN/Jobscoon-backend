@@ -58,8 +58,8 @@ class JobPost extends Model
         return "RM " . strval($this->salary_lower) . " - " . strval($this->salary_upper);
     }
 
-    public function getIsAppliedAttribute($id)
+    public function getIsAppliedAttribute()
     {
-        return ($this->users()->where('user_id', $id)->exists()) ? true : false;
+        return ($this->users()->where('user_id',Auth::user()->id)->exists()) ? true : false;
     }
 }
