@@ -39,7 +39,8 @@ class JobPostController extends Controller
      */
     public function show(JobPost $jobPost = null, $id)
     {
-        return JobPost::with('company')->findOrFail($id);
+       
+        return JobPost::with('company')->findOrFail($id)->getIsAppliedAttribute(Auth::user()->id);
     }
 
     /**
