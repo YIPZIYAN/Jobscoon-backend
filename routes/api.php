@@ -45,8 +45,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('acceptinterview/{id}',[JobInterviewController::class,'acceptInterview']);
     Route::post('declineinterview/{id}',[JobInterviewController::class,'declineInterview']);
     
-    Route::post('autologin',[AuthController::class,'autoLogin']);
+    Route::get('myprofile',[AuthController::class,'myProfile']);
     Route::post('logout', [AuthController::class, 'logout']);
+    Route::patch('updateprofile/{id}',[AuthController::class,'updateProfile']);
+
 
     Route::resource('jobapplication',JobApplicationController::class);
     Route::resource('jobinterview',JobInterviewController::class);
