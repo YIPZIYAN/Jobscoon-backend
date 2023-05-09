@@ -16,8 +16,8 @@ class JobInterviewController extends Controller
     {
         return JobInterview::with('jobPost.company')
         ->where('user_id',Auth::user()->id)
-        ->orderByDesc('date')
-        ->orderByDesc('start_time')
+        ->orderBy('date')
+        ->orderBy('start_time')
         ->get();
     }
 
