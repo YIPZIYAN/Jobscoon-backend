@@ -2,9 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\CareerDevelopment;
 use App\Models\Company;
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use Illuminate\Support\Facades\Storage;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CareerDevelopment>
  */
@@ -15,6 +16,7 @@ class CareerDevelopmentFactory extends Factory
         'physical',
         'virtual',
     ];
+
     /**
      * Define the model's default state.
      *
@@ -22,16 +24,26 @@ class CareerDevelopmentFactory extends Factory
      */
     public function definition(): array
     {
+
+        $imagePath =[
+            'app/storage/images/cd1.jpg',
+            'app/storage/images/cd2.png',
+            'app/storage/images/cd3.jpg',
+            'app/storage/images/cd4.png',
+            'app/storage/images/cd5.png',
+
+
+        ];
         $type = fake()->randomElement(SELF::TYPE);
         $location = "";
         $link = fake()->url();
         $startDate = fake()->dateTimeBetween('+1 month', '+6 month');
-        $endDate = fake()->dateTimeBetween($startDate,'+6 month');
+        $endDate = fake()->dateTimeBetween($startDate, '+6 month');
         $startTime = fake()->time();
         $endTime = fake()->time();
-        if($endTime <= $startTime && $endDate <= $startDate){
+        if ($endTime <= $startTime && $endDate <= $startDate) {
             $endTime = fake()->dateTimeBetween($startTime, '+1 day');
-        }        
+        }
         if ($type != 'virtual') {
             $location = fake()->address();
             $link = null;
@@ -47,7 +59,8 @@ class CareerDevelopmentFactory extends Factory
             'location' => $location,
             'description' => fake()->paragraph(),
             'capacity' => fake()->numberBetween(50, 200),
-            'company_id'=>Company::all()->random()->id,
+            'image' => fake()->randomElement($imagePath),
+            'company_id' => Company::all()->random()->id,
         ];
     }
 }

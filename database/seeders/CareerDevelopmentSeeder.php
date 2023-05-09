@@ -6,6 +6,7 @@ use GuzzleHttp\Promise\Create;
 use Illuminate\Database\Seeder;
 use App\Models\CareerDevelopment;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 
@@ -16,6 +17,7 @@ class CareerDevelopmentSeeder extends Seeder
      */
     public function run(): void
     {
+
         DB::table('career_developments')->insert([
             [
                 'title' => 'Idol Producer 2.0',
@@ -28,6 +30,7 @@ class CareerDevelopmentSeeder extends Seeder
                 'location' => 'Lot 22,Bangunan Thai Ku La, Jalan Hantu Kecil, Wangsa Maju, 55500 Kuala Lumpur',
                 'description' => 'To produce more Idol',
                 'capacity' => '100',
+                'image' => 'app/storage/images/cd1.jpg',
                 'company_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -43,6 +46,7 @@ class CareerDevelopmentSeeder extends Seeder
                 'location' => 'Lot 11,Freestyle Building , Jalan Besar, Setapak, 54400 Kuala Lumpur',
                 'description' => 'Introduce the job to the employee and let them have a better chance to know what will they do',
                 'capacity' => '200',
+                'image' => 'app/storage/images/cd2.png',
                 'company_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -58,6 +62,7 @@ class CareerDevelopmentSeeder extends Seeder
                 'location' => '',
                 'description' => 'Let the employee have more interest on their job',
                 'capacity' => '200',
+                'image' => 'app/storage/images/cd3.jpg',
                 'company_id' => 1,
                 'created_at' => now(),
                 'updated_at' => now(),

@@ -21,6 +21,7 @@ class CareerDevelopment extends Model
         'location',
         'description',
         'capacity',
+        'image',
     ];
 
     protected $appends = [
