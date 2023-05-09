@@ -5,6 +5,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class CareerDevelopment extends Model
 {
@@ -21,17 +22,20 @@ class CareerDevelopment extends Model
         'location',
         'description',
         'capacity',
+        'max_capacity',
         'image',
     ];
 
     protected $appends = [
         'date_only',
         'combined_time',
+        'is_applied',
     ];
 
     public function users()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class,'career_development_applications')
+        ->withTimestamps();
     }
 
     public function company()
@@ -49,5 +53,17 @@ class CareerDevelopment extends Model
     public function getCombinedTimeAttribute()
     {
         return Carbon::parse($this->start_time)->format('h:i A').' - '.Carbon::parse($this->end_time)->format('h:i A');
+    }
+
+    public function getIsAppliedAttribute()
+    {
+        return ($this->users()->where('user_id',Auth::user()->id)->exists()) ? true : false;
+    }
+
+    public function updateCapacity($id)
+    {
+        $noApply =CareerDevelopmentApplication::where('career_development_id', $id)->count();
+        $this->capacity = $this->max_capacity - $noApply;
+        $this->save();
     }
 }

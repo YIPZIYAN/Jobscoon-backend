@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdatePasswordRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\Company;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
 {
@@ -96,10 +99,32 @@ class AuthController extends Controller
         ], 200);
     }
 
-    public function autoLogin(Request $request)
+    //show my profile
+    public function myProfile()
     {
-        $user = User::findOrFail($request->id);
+        return response()->json(Auth::user());
+    }
 
-        return response()->json($user);
+    public function updateProfile(UpdateUserRequest $request,$id)
+    {
+        $user = User::findOrFail($id);
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'description' => $request->description,
+            'address' => $request->address,
+        ]);
+
+        return response()->json();
+    }
+
+    public function resetPassword(UpdatePasswordRequest $request)
+    {
+        Auth::user()->update([
+            'password' => Hash::make($request->new_password),
+        ]);
+
+        return response()->json();
     }
 }

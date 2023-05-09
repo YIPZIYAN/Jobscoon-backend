@@ -41,6 +41,12 @@ class CareerDevelopmentFactory extends Factory
         $endDate = fake()->dateTimeBetween($startDate, '+6 month');
         $startTime = fake()->time();
         $endTime = fake()->time();
+
+        $maxCapacity = fake()->numberBetween(50, 200);
+        $capacity = fake()->numberBetween(50, 200);
+        if($capacity >$maxCapacity){
+            $maxCapacity+=200;
+        }
         if ($endTime <= $startTime && $endDate <= $startDate) {
             $endTime = fake()->dateTimeBetween($startTime, '+1 day');
         }
@@ -58,7 +64,8 @@ class CareerDevelopmentFactory extends Factory
             'link' => $link,
             'location' => $location,
             'description' => fake()->paragraph(),
-            'capacity' => fake()->numberBetween(50, 200),
+            'max_capacity' => $maxCapacity,
+            'capacity' =>$capacity,
             'image' => fake()->randomElement($imagePath),
             'company_id' => Company::all()->random()->id,
         ];

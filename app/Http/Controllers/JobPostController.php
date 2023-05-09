@@ -15,7 +15,10 @@ class JobPostController extends Controller
      */
     public function index()
     {
-        return JobPost::all();
+        $user = Auth::user();
+        return $user->is_employer ?
+            JobPost::where('company_id', $user->company_id)->get()
+            : JobPost::all();
     }
 
     /**
@@ -39,7 +42,7 @@ class JobPostController extends Controller
      */
     public function show(JobPost $jobPost = null, $id)
     {
-       
+
         return JobPost::with('company')->findOrFail($id);
     }
 
@@ -70,11 +73,10 @@ class JobPostController extends Controller
     public function applyJob($id)
     {
         $jobPost = JobPost::findOrFail($id);
-        $jobPost->users()->attach(Auth::user()->id,[
+        $jobPost->users()->attach(Auth::user()->id, [
             'created_at' => now(),
             'updated_at' => now(),
         ]);
         return response()->json();
     }
-
 }
