@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\CareerDevelopment;
 use App\Http\Requests\StoreCareerDevelopmentRequest;
 use App\Http\Requests\UpdateCareerDevelopmentRequest;
+use App\Models\CareerDevelopmentApplication;
+use Illuminate\Support\Facades\Auth;
 
 class CareerDevelopmentController extends Controller
 {
@@ -21,7 +23,6 @@ class CareerDevelopmentController extends Controller
      */
     public function create()
     {
-
     }
 
     /**
@@ -35,9 +36,9 @@ class CareerDevelopmentController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(CareerDevelopment $careerDevelopment = null,$id)
+    public function show(CareerDevelopment $careerDevelopment = null, $id)
     {
-        return CareerDevelopment::findOrFail($id);
+        return CareerDevelopment::with('company')->findOrFail($id);
     }
 
     /**
@@ -62,5 +63,27 @@ class CareerDevelopmentController extends Controller
     public function destroy(CareerDevelopment $careerDevelopment)
     {
         //
+    }
+
+    public function applyCareer($id)
+    {
+
+        $careerDevelopment = CareerDevelopment::findOrFail($id);
+        if ($careerDevelopment->capacity == 0) {
+            return response()->json(['message' => 'This Career Development Is Fulled.']);
+        }
+        $careerDevelopment->users()->sync(Auth::user()->id);
+        $careerDevelopment->updateCapacity($id);
+
+        return response()->json();
+    }
+
+    public function cancelCareer($id)
+    {
+        $careerDevelopment = CareerDevelopment::findOrFail($id);
+        $careerDevelopment->users()->detach(Auth::user()->id);
+        $careerDevelopment->updateCapacity($id);
+        
+        return response()->json();
     }
 }

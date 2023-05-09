@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdatePasswordRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Company;
 use App\Models\User;
@@ -11,6 +12,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 
 class AuthController extends Controller
 {
@@ -103,7 +105,8 @@ class AuthController extends Controller
         return response()->json(Auth::user());
     }
 
-    public function updateProfile(UpdateUserRequest $request,$id){
+    public function updateProfile(UpdateUserRequest $request,$id)
+    {
         $user = User::findOrFail($id);
         $user->update([
             'name' => $request->name,
@@ -111,6 +114,15 @@ class AuthController extends Controller
             'phone' => $request->phone,
             'description' => $request->description,
             'address' => $request->address,
+        ]);
+
+        return response()->json();
+    }
+
+    public function resetPassword(UpdatePasswordRequest $request)
+    {
+        Auth::user()->update([
+            'password' => Hash::make($request->new_password),
         ]);
 
         return response()->json();

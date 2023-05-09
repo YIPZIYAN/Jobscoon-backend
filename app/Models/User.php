@@ -52,7 +52,7 @@ class User extends Authenticatable
 
     public function careerDevelopments()
     {
-        return $this->belongsToMany(CareerDevelopment::class);
+        return $this->belongsToMany(CareerDevelopment::class,'career_development_applications');
     }
 
     public function jobInterviews()
