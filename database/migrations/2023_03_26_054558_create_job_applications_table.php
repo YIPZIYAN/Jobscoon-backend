@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\JobInterview;
 use App\Models\JobPost;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
@@ -18,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(JobPost::class)->constrained();
             $table->foreignIdFor(User::class)->constrained();
-            $table->foreignIdFor(JobInterview::class)->nullable()->default(null)->constrained();
             $table->string('status')->default('pending');
             $table->timestamps();
         });

@@ -21,8 +21,8 @@ class DatabaseSeeder extends Seeder
             JobPostSeeder::class,
             CareerDevelopmentSeeder::class,
             CareerDevelopmentApplicationSeeder::class,
-            JobInterviewSeeder::class,
             JobApplicationSeeder::class,
+            JobInterviewSeeder::class,
         ]);
     }
 }

@@ -34,17 +34,13 @@ class JobInterview extends Model
         'updated_at' => 'datetime:Y-m-d H:i:s',
     ];
 
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
-    // public function jobPost()
-    // {
-    //     return $this->belongsTo(JobPost::class);
-    // }
-
-    public function jobApplications(){
-        return $this->hasOne(JobApplication::class);
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function jobPost()
+    {
+        return $this->belongsTo(JobPost::class);
     }
 
     public function getDayOnlyAttribute()

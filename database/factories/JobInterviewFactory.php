@@ -16,11 +16,6 @@ class JobInterviewFactory extends Factory
         'physical',
         'virtual',
     ];
-    private const STATUS = [
-        'pending',
-        'accept',
-        'decline',
-    ];
     /**
      * Define the model's default state.
      *
@@ -28,7 +23,6 @@ class JobInterviewFactory extends Factory
      */
     public function definition(): array
     {
-        $status = fake()->randomElement(SELF::STATUS);
         $type = fake()->randomElement(SELF::TYPE);
         $startTime = fake()->time();
         $endTime = fake()->time();
@@ -43,15 +37,14 @@ class JobInterviewFactory extends Factory
             $link =fake()->url();
         }
         return [
-            // 'user_id' => User::where('is_employer',false)->get()->random()->id,
-            // 'job_post_id' => JobPost::all()->random()->id,
+            'user_id' => User::where('is_employer',false)->get()->random()->id,
+            'job_post_id' => JobPost::all()->random()->id,
             'date' => fake()->dateTimeBetween('+1 day', '+1 month'),
             'start_time' => $startTime,
             'end_time' => $endTime,
             'type' => $type,
             'link' => $link,
             'location' => $location,
-            'status' => $status,
             'description' => fake()->paragraph(),
         ];
     }
