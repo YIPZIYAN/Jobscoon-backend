@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\JobApplication;
+use App\Models\JobInterview;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -35,7 +36,6 @@ class JobApplicationSeeder extends Seeder
                 'job_interview_id' => null,
                 'status' => 'decline',
             ]);
-        
             JobApplication::factory(10)->create();
         }
 

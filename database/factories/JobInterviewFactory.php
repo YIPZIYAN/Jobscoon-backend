@@ -16,6 +16,11 @@ class JobInterviewFactory extends Factory
         'physical',
         'virtual',
     ];
+    private const STATUS = [
+        'pending',
+        'accept',
+        'decline',
+    ];
     /**
      * Define the model's default state.
      *
@@ -23,6 +28,7 @@ class JobInterviewFactory extends Factory
      */
     public function definition(): array
     {
+        $status = fake()->randomElement(SELF::STATUS);
         $type = fake()->randomElement(SELF::TYPE);
         $startTime = fake()->time();
         $endTime = fake()->time();
@@ -45,6 +51,7 @@ class JobInterviewFactory extends Factory
             'type' => $type,
             'link' => $link,
             'location' => $location,
+            'status' => $status,
             'description' => fake()->paragraph(),
         ];
     }
