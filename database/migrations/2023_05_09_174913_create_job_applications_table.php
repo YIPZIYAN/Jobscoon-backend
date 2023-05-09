@@ -18,7 +18,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(JobPost::class)->constrained();
             $table->foreignIdFor(User::class)->constrained();
-            $table->foreignIdFor(JobInterview::class)->nullable()->constrained();
+            $table->foreignIdFor(JobInterview::class)->nullable()->default(null)->constrained();
             $table->string('status')->default('pending');
             $table->timestamps();
         });

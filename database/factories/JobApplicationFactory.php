@@ -26,10 +26,9 @@ class JobApplicationFactory extends Factory
     {
         $jobInterviewId = null;
         $status = fake()->randomElement(SELF::STATUS);
-        if($status == 'approved'){
-            $jobInterviewId = JobInterview::all()->random()->id;
+        if($status != 'accept'){
         }else{
-            $jobInterviewId = null;
+            $jobInterviewId = JobInterview::all()->random()->id;
         }
         return [
             'job_post_id' => JobPost::all()->random()->id,

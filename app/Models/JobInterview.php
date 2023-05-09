@@ -43,8 +43,8 @@ class JobInterview extends Model
     //     return $this->belongsTo(JobPost::class);
     // }
 
-    public function jobApplication(){
-        return $this->hasOne(JobApplication::class)
+    public function jobApplications(){
+        return $this->hasOne(JobApplication::class);
     }
 
     public function getDayOnlyAttribute()
