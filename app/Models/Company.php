@@ -12,6 +12,7 @@ class Company extends Model
     protected $fillable = [
         'name',
         'contact_number',
+        'email',
         'reg_no',
         'location',
         'description',
@@ -20,5 +21,10 @@ class Company extends Model
     public function users()
     {
         return $this->hasMany(User::class);
+    }
+
+    public function careerDevelopments()
+    {
+        return $this->hasMany(CareerDevelopment::class);
     }
 }

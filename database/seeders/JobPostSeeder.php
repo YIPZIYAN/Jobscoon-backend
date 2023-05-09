@@ -49,5 +49,6 @@ class JobPostSeeder extends Seeder
             'updated_at' => now(),
         ]
     ]);
+    JobPost::factory(10)->create();
     }
 }

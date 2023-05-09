@@ -1,10 +1,14 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CareerDevelopmentController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\JobApplicationController;
+use App\Http\Controllers\JobInterviewController;
 use App\Http\Controllers\JobPostController;
-use App\Models\Company;
+use App\Models\JobPost;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,12 +33,23 @@ Route::post('register', [AuthController::class, 'register']);
 Route::post('validatecompany',[CompanyController::class,'validateCompany']);
 Route::post('registercompany',[CompanyController::class,'store']);
 
-Route::post('companylist',[CompanyController::class,'showCompanyList']);
+Route::get('companylist',[CompanyController::class,'showCompanyList']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
     
     Route::resource('company', CompanyController::class);
+
     Route::resource('jobpost', JobPostController::class);
+    Route::post('applyjob/{id}',[JobPostController::class,'applyJob']);
+
+    Route::post('acceptinterview/{id}',[JobInterviewController::class,'acceptInterview']);
+    Route::post('declineinterview/{id}',[JobInterviewController::class,'declineInterview']);
+    
+    Route::post('autologin',[AuthController::class,'autoLogin']);
     Route::post('logout', [AuthController::class, 'logout']);
+
+    Route::resource('jobapplication',JobApplicationController::class);
+    Route::resource('jobinterview',JobInterviewController::class);
+    Route::resource('careerdev',CareerDevelopmentController::class);
 
 });
