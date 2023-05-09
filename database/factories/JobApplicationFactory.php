@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\JobInterview;
 use App\Models\User;
 use App\Models\JobPost;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -23,11 +24,18 @@ class JobApplicationFactory extends Factory
      */
     public function definition(): array
     {
+        $jobInterviewId = null;
         $status = fake()->randomElement(SELF::STATUS);
+        if($status == 'approved'){
+            $jobInterviewId = JobInterview::all()->random()->id;
+        }else{
+            $jobInterviewId = null;
+        }
         return [
             'job_post_id' => JobPost::all()->random()->id,
             'user_id' => User::where('is_employer',false)->get()->random()->id,
             'status' => $status,
+            'job_interview_id' =>$jobInterviewId,
         
         ];
     }

@@ -37,8 +37,8 @@ class JobInterviewFactory extends Factory
             $link =fake()->url();
         }
         return [
-            'user_id' => User::where('is_employer',false)->get()->random()->id,
-            'job_post_id' => JobPost::all()->random()->id,
+            // 'user_id' => User::where('is_employer',false)->get()->random()->id,
+            // 'job_post_id' => JobPost::all()->random()->id,
             'date' => fake()->dateTimeBetween('+1 day', '+1 month'),
             'start_time' => $startTime,
             'end_time' => $endTime,

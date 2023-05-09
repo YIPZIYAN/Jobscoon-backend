@@ -16,8 +16,6 @@ class JobInterviewSeeder extends Seeder
     {
         DB::table('job_interviews')->insert([
         [
-            'user_id' => 2,
-            'job_post_id' => 1,
             'date' => "2023-01-20",
             'start_time' => '11:00',
             'end_time' => '13:00',
@@ -29,8 +27,6 @@ class JobInterviewSeeder extends Seeder
             'updated_at' => now(), 
         ],
         [
-            'user_id' => 2,
-            'job_post_id' => 2,
             'date' => "2023-01-21",
             'start_time' => '11:00',
             'end_time' => '13:00',
@@ -42,8 +38,6 @@ class JobInterviewSeeder extends Seeder
             'updated_at' => now(),
         ],
         [
-            'user_id' => 2,
-            'job_post_id' => 3,
             'date' => "2023-01-23",
             'start_time' => '12:00',
             'end_time' => '13:00',
