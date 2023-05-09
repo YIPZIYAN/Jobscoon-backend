@@ -16,6 +16,7 @@ class CompanySeeder extends Seeder
         Company::create([
             'name' => 'IKUN Enterprise',
             'contact_number' => '0308020802',
+            'email' => 'ikun@kun.com',
             'reg_no' => '202305980802',
             'location' => 'No 82, Jalan Genting Klang, 12345 Setapak, Kuala Lumpur',
         ]);

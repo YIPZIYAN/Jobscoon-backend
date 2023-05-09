@@ -33,7 +33,7 @@ Route::post('register', [AuthController::class, 'register']);
 Route::post('validatecompany',[CompanyController::class,'validateCompany']);
 Route::post('registercompany',[CompanyController::class,'store']);
 
-Route::post('companylist',[CompanyController::class,'showCompanyList']);
+Route::get('companylist',[CompanyController::class,'showCompanyList']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
     

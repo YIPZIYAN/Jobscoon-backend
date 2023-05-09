@@ -31,11 +31,15 @@ class StoreUserRequest extends FormRequest
             'address' => ['nullable', 'string', 'nullable'],
             'password' => ['required', 'confirmed'],
 
-            'company_name' => ['exclude_unless:is_employer,true', 'required', 'string', 'max:255'],
-            'contact_number' => ['exclude_unless:is_employer,true', 'required', 'numeric'], // 'digits_between:9,10'
-            'reg_no' => ['exclude_unless:is_employer,true', 'required', 'numeric', 'digits:12', 'unique:' . Company::class],
-            'company_location' => ['exclude_unless:is_employer,true', 'required', 'string'],
-            'company_description' => ['exclude_unless:is_employer,true', 'nullable', 'string'],
+            'is_new_company' => ['required_if:is_employer,true'],
+            'search_company' => ['required_if:is_new_company,false'],
+
+            'company_name' => ['exclude_unless:is_new_company,true', 'required', 'string', 'max:255'],
+            'contact_number' => ['exclude_unless:is_new_company,true', 'required', 'numeric'], // 'digits_between:9,10'
+            'company_email' => ['exclude_unless:is_new_company,true', 'required','email'],
+            'reg_no' => ['exclude_unless:is_new_company,true', 'required', 'numeric', 'digits:12', 'unique:' . Company::class],
+            'company_location' => ['exclude_unless:is_new_company,true', 'required', 'string'],
+            'company_description' => ['exclude_unless:is_new_company,true', 'nullable', 'string'],
         ];
     }
 }
