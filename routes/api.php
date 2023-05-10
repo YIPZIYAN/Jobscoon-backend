@@ -42,7 +42,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     //profile
     Route::get('myprofile',[AuthController::class,'myProfile']);
     Route::post('logout', [AuthController::class, 'logout']);
-    Route::patch('updateprofile/{id}',[AuthController::class,'updateProfile']);
+    Route::patch('updateprofile',[AuthController::class,'updateProfile']);
     Route::patch('resetpassword',[AuthController::class,'resetPassword']);
 
     //job application

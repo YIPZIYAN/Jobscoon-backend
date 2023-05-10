@@ -105,10 +105,9 @@ class AuthController extends Controller
         return response()->json(Auth::user());
     }
 
-    public function updateProfile(UpdateUserRequest $request,$id)
+    public function updateProfile(UpdateUserRequest $request)
     {
-        $user = User::findOrFail($id);
-        $user->update([
+        Auth::user()->update([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
@@ -116,7 +115,9 @@ class AuthController extends Controller
             'address' => $request->address,
         ]);
 
-        return response()->json();
+        return response()->json([
+            "message" => "ok",
+        ]);
     }
 
     public function resetPassword(UpdatePasswordRequest $request)
