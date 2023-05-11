@@ -22,7 +22,12 @@ class UpdateJobInterviewRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
-        ];
+            'date' => ['required',],
+            'start_time' => ['required'],
+            'end_time' => ['required','after_or_equal:end_time'],
+            'type' => 'required',
+            'link' => 'nullable',
+            'location' => 'nullable',
+            'description' => 'required|max:500',        ];
     }
 }

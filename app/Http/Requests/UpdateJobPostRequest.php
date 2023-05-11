@@ -22,7 +22,11 @@ class UpdateJobPostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
-        ];
+            'title' => ['required', 'string', 'max:255'],
+            'salary_lower' => 'required|numeric|min:0|max:99999',
+            'salary_higher' => 'required|numeric|min:0|max:99999|after_or_equal:salary_lower',
+            'type' => 'required',
+            'shift' => 'required|string',
+            'description' => 'required|max:500',        ];
     }
 }

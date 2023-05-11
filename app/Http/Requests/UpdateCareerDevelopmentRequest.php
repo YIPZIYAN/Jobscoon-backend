@@ -22,7 +22,15 @@ class UpdateCareerDevelopmentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
-        ];
+            'title' => ['required', 'string', 'max:255'],
+            'date_start' => ['required',],
+            'date_end' => ['required','after_or_equal:date_start'],
+            'start_time' => ['required'],
+            'end_time' => ['required'],
+            'type' => 'required',
+            'link' => 'nullable',
+            'location' => 'nullable',
+            'description' => 'required|max:500',
+            'capacity' => 'nullable|numeric',        ];
     }
 }
