@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,5 +26,15 @@ class JobApplication extends Model
     public function jobPost()
     {
         return $this->belongsTo(JobPost::class);
+    }
+
+    public function getCreatedAtColumn()
+    {
+        return Carbon::parse($this->created_at)->setTimezone('Asia/Kuala_Lumpur')->format('Y-m-d H:i:s');
+    }
+
+    public function getUpdatedAtColumn()
+    {
+        return Carbon::parse($this->updated_at)->setTimezone('Asia/Kuala_Lumpur')->format('Y-m-d H:i:s');
     }
 }
