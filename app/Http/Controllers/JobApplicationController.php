@@ -6,6 +6,7 @@ use App\Models\JobApplication;
 use App\Http\Requests\StoreJobApplicationRequest;
 use App\Http\Requests\UpdateJobApplicationRequest;
 use App\Models\JobPost;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class JobApplicationController extends Controller
@@ -16,9 +17,9 @@ class JobApplicationController extends Controller
     public function index()
     {
         return JobApplication::with('jobPost.company')
-        ->where('user_id',Auth::user()->id)
-        ->orderByDesc('updated_at')
-        ->get();
+            ->where('user_id', Auth::user()->id)
+            ->orderByDesc('updated_at')
+            ->get();
     }
 
     /**
@@ -41,11 +42,20 @@ class JobApplicationController extends Controller
      * Display the specified resource.
      * Show applicants list
      */
-    public function show(JobApplication $jobApplication = null,$id)
+    public function show(JobApplication $jobApplication = null, $id)
     {
         $jobPost = JobPost::findOrFail($id);
 
-        return $jobPost->users;
+        $users= $jobPost->users()
+        ->without('company')
+        ->orderByDesc('job_applications.updated_at')->get();
+
+        $users->each(function ($user) {
+          $date  = Carbon::parse($user->pivot->created_at)->diffForHumans();
+          $user->pivot->applied_at = $date;
+        });
+
+        return response()->json($users);
     }
 
     /**
@@ -71,5 +81,4 @@ class JobApplicationController extends Controller
     {
         //
     }
-
 }

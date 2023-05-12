@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -49,6 +51,8 @@ class User extends Authenticatable
         'company',
     ];
 
+
+
     public function company()
     {
         return $this->belongsTo(Company::class);
@@ -56,7 +60,7 @@ class User extends Authenticatable
 
     public function careerDevelopments()
     {
-        return $this->belongsToMany(CareerDevelopment::class,'career_development_applications');
+        return $this->belongsToMany(CareerDevelopment::class, 'career_development_applications');
     }
 
     public function jobInterviews()
@@ -67,5 +71,10 @@ class User extends Authenticatable
     public function jobApplications()
     {
         return $this->hasMany(JobApplication::class);
+    }
+
+    public function jobPosts()
+    {
+        return $this->belongsToMany(JobPost::class, 'job_applications');
     }
 }

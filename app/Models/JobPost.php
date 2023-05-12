@@ -30,7 +30,6 @@ class JobPost extends Model
         'shift',
     ];
 
-
     public function company()
     {
         return $this->belongsTo(Company::class);
@@ -39,7 +38,8 @@ class JobPost extends Model
     public function users()
     {
         return $this->belongsToMany(User::class, 'job_applications')
-        ->withTimestamps();
+        ->withTimestamps()
+        ->withPivot('status');
     }
 
     public function getPostAtAttribute()

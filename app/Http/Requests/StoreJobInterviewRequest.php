@@ -22,7 +22,7 @@ class StoreJobInterviewRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            
         ];
     }
 }

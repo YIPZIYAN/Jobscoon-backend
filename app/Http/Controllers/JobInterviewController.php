@@ -35,6 +35,7 @@ class JobInterviewController extends Controller
     public function store(StoreJobInterviewRequest $request)
     {
         JobInterview::create($request->all());
+        return response()->json();
     }
 
     /**
