@@ -24,9 +24,10 @@ return new class extends Migration
             $table->string('location')->nullable();
             $table->longText('description');
             $table->integer('max_capacity');
-            $table->integer('capacity');
+            $table->integer('capacity')->nullable();
             $table->binary('image')->nullable();
             $table->foreignIdFor(Company::class)->constrained();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

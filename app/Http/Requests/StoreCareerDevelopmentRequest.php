@@ -11,7 +11,7 @@ class StoreCareerDevelopmentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,15 +24,15 @@ class StoreCareerDevelopmentRequest extends FormRequest
         return [
 
                 'title' => ['required', 'string', 'max:255'],
-                'date_start' => ['required',],
-                'date_end' => ['required','after_or_equal:date_start'],
-                'start_time' => ['required'],
-                'end_time' => ['required'],
+                'date_start' => ['required','date'],
+                'date_end' => ['required','date','after_or_equal:date_start'],
+                'start_time' => ['required','date_format:H:i'],
+                'end_time' => ['required','date_format:H:i','after:start_time'],
                 'type' => 'required',
-                'link' => 'nullable',
-                'location' => 'nullable',
+                'link' => 'required_without:location',
+                'location' => 'required_without:link',
                 'description' => 'required|max:500',
-                'capacity' => 'nullable|numeric',
+                'max_capacity' => 'required|numeric',
         ];
     }
 }

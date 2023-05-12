@@ -6,6 +6,7 @@ use App\Models\CareerDevelopment;
 use App\Http\Requests\StoreCareerDevelopmentRequest;
 use App\Http\Requests\UpdateCareerDevelopmentRequest;
 use App\Models\CareerDevelopmentApplication;
+use App\Models\Company;
 use Illuminate\Support\Facades\Auth;
 
 class CareerDevelopmentController extends Controller
@@ -15,7 +16,13 @@ class CareerDevelopmentController extends Controller
      */
     public function index()
     {
-        return CareerDevelopment::with('company')->get();
+        $user = Auth::user();
+        return $user->is_employer ?
+            CareerDevelopment::with('company')
+            ->where('company_id', $user->company_id)
+            ->get()
+            : CareerDevelopment::with('company')
+            ->get();
     }
 
     /**
@@ -30,7 +37,13 @@ class CareerDevelopmentController extends Controller
      */
     public function store(StoreCareerDevelopmentRequest $request)
     {
-        return CareerDevelopment::create($request->all());
+        $company = Company::findOrFail(Auth::user()->company_id);
+
+        $company->careerDevelopments()->create($request->all())
+            ->update([
+                'capacity' => $request->max_capacity
+            ]);
+        return response()->json();
     }
 
     /**
@@ -52,17 +65,20 @@ class CareerDevelopmentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCareerDevelopmentRequest $request, CareerDevelopment $careerDevelopment)
+    public function update(UpdateCareerDevelopmentRequest $request, $id)
     {
-        //
+        $careerDev = CareerDevelopment::findOrFail($id);
+        $careerDev->update($request->all());
+        return response()->json();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CareerDevelopment $careerDevelopment)
+    public function destroy(CareerDevelopment $careerDevelopment,$id)
     {
-        //
+        CareerDevelopment::findOrFail($id)->delete();
+        return response()->json();
     }
 
     public function applyCareer($id)
@@ -83,7 +99,7 @@ class CareerDevelopmentController extends Controller
         $careerDevelopment = CareerDevelopment::findOrFail($id);
         $careerDevelopment->users()->detach(Auth::user()->id);
         $careerDevelopment->updateCapacity($id);
-        
+
         return response()->json();
     }
 }
