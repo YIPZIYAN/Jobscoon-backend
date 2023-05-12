@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('shift');
             $table->longText('description');
             $table->foreignIdFor(Company::class)->constrained();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

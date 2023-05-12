@@ -5,11 +5,12 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 
 class JobPost extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'title',
@@ -60,6 +61,6 @@ class JobPost extends Model
 
     public function getIsAppliedAttribute()
     {
-        return ($this->users()->where('user_id',Auth::user()->id)->exists()) ? true : false;
+        return ($this->users()->where('user_id', Auth::user()->id)->exists()) ? true : false;
     }
 }

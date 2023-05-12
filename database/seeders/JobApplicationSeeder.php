@@ -35,7 +35,7 @@ class JobApplicationSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now(),
         ]]);
-    JobApplication::factory(10)->create();
+    // JobApplication::factory(10)->create();
     }
 
 }

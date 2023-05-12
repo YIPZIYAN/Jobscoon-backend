@@ -63,17 +63,24 @@ class JobPostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateJobPostRequest $request, JobPost $jobPost)
+    public function update(StoreJobPostRequest $request, $id)
     {
-        //
+        $jobPost = JobPost::findOrFail($id);
+
+        $jobPost->update($request->all());
+
+        return response()->json();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(JobPost $jobPost)
+    public function destroy($id)
     {
-        //
+        $jobPost = JobPost::findOrFail($id);
+        $jobPost->delete();
+
+        return response()->json();
     }
 
     public function applyJob($id)

@@ -28,7 +28,6 @@ class JobApplicationFactory extends Factory
             'job_post_id' => JobPost::all()->random()->id,
             'user_id' => User::where('is_employer',false)->get()->random()->id,
             'status' => $status,
-        
         ];
     }
 }
