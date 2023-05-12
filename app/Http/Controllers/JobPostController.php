@@ -18,8 +18,12 @@ class JobPostController extends Controller
     {
         $user = Auth::user();
         return $user->is_employer ?
-            JobPost::where('company_id', $user->company_id)->get()
-            : JobPost::all();
+            JobPost::where('company_id', $user->company_id)
+            ->orderByDesc('updated_at')
+            ->get()
+            : JobPost::all()
+            ->orderByDesc('updated_at')
+            ;
     }
 
     /**
