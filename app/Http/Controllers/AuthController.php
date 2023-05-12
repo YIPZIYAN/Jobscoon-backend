@@ -115,9 +115,7 @@ class AuthController extends Controller
             'address' => $request->address,
         ]);
 
-        return response()->json([
-            "message" => "ok",
-        ]);
+        return response()->json();
     }
 
     public function resetPassword(UpdatePasswordRequest $request)

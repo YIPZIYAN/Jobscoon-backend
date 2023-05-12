@@ -26,8 +26,9 @@ class StoreJobPostRequest extends FormRequest
             'salary_lower' => ['required','numeric'],
             'salary_upper' => ['required','gt:salary_lower','numeric'],
             'type' => ['required','string'],
-            'shift' => ['required','string'],
-            'description' => ['nullable','string'],
+            'shift_start' => ['required','string'],
+            'shift_end' => ['required','string'],
+            'description' => ['required','string'],
         ];
     }
 }

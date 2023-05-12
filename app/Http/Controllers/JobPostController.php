@@ -48,7 +48,6 @@ class JobPostController extends Controller
      */
     public function show(JobPost $jobPost = null, $id)
     {
-
         return JobPost::with('company')->findOrFail($id);
     }
 
@@ -86,10 +85,7 @@ class JobPostController extends Controller
     public function applyJob($id)
     {
         $jobPost = JobPost::findOrFail($id);
-        $jobPost->users()->attach(Auth::user()->id, [
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        $jobPost->users()->attach(Auth::user()->id);
         return response()->json();
     }
 }

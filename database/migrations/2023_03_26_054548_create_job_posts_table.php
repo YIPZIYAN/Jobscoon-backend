@@ -18,7 +18,8 @@ return new class extends Migration
             $table->integer('salary_lower');
             $table->integer('salary_upper');
             $table->string('type');
-            $table->string('shift');
+            $table->string('shift_start');
+            $table->string('shift_end');
             $table->longText('description');
             $table->foreignIdFor(Company::class)->constrained();
             $table->softDeletes();

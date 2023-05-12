@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\JobApplication;
 use App\Http\Requests\StoreJobApplicationRequest;
 use App\Http\Requests\UpdateJobApplicationRequest;
+use App\Models\JobPost;
 use Illuminate\Support\Facades\Auth;
 
 class JobApplicationController extends Controller
@@ -38,10 +39,13 @@ class JobApplicationController extends Controller
 
     /**
      * Display the specified resource.
+     * Show applicants list
      */
     public function show(JobApplication $jobApplication = null,$id)
     {
-        JobApplication::findOrFail($id);
+        $jobPost = JobPost::findOrFail($id);
+
+        return $jobPost->users;
     }
 
     /**
@@ -67,4 +71,5 @@ class JobApplicationController extends Controller
     {
         //
     }
+
 }

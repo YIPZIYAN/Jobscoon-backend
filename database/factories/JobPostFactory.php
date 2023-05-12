@@ -16,12 +16,14 @@ class JobPostFactory extends Factory
         'Part-time',
     ];
 
-    private const SHIFT = [
-        'Monday to Thursday',
-        'Monday to Friday',
-        'Monday to Saturday',
-        'Saturday and Sunday',
-        'Friday to Sunday',
+    private const SHIFT_START = [
+        'Monday',
+    ];
+
+    private const SHIFT_END = [
+        'Thursday',
+        'Saturday',
+        'Friday',
     ];
     /**
      * Define the model's default state.
@@ -33,7 +35,8 @@ class JobPostFactory extends Factory
         $salaryLower = fake()->numberBetween(1500,9999);
         $salaryHigher = fake()->numberBetween(1500,9999);
         $type = fake()->randomElement(SELF::TYPE);
-        $shift = fake()->randomElement(SELF::SHIFT);
+        $shiftStart = fake()->randomElement(SELF::SHIFT_START);
+        $shiftEnd = fake()->randomElement(SELF::SHIFT_END);
         do{
             $salaryHigher = fake()->numberBetween(1500,9999);
         }while($salaryLower > $salaryHigher);
@@ -42,7 +45,8 @@ class JobPostFactory extends Factory
             'salary_lower' => $salaryLower,
             'salary_upper' => $salaryHigher,
             'type' => $type,
-            'shift' => $shift,
+            'shift_start' => $shiftStart,
+            'shift_end' => $shiftEnd,
             'description' => fake()->paragraph(),
             'company_id' => Company::all()->random()->id,
             

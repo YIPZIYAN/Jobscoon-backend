@@ -48,6 +48,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     //job application
     Route::resource('jobapplication',JobApplicationController::class);
     Route::post('applyjob/{id}',[JobPostController::class,'applyJob']);
+    // Route::get('jobappliation/{id}/applicants',[JobApplicationController::class,'getApplicantsList']);
 
     //job interview
     Route::resource('jobinterview',JobInterviewController::class);

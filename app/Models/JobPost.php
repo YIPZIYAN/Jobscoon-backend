@@ -17,7 +17,8 @@ class JobPost extends Model
         'salary_lower',
         'salary_upper',
         'type',
-        'shift',
+        'shift_start',
+        'shift_end',
         'description',
         'company_id',
     ];
@@ -26,6 +27,7 @@ class JobPost extends Model
         'post_at',
         'salary',
         'is_applied',
+        'shift',
     ];
 
 
@@ -36,12 +38,18 @@ class JobPost extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'job_applications');
+        return $this->belongsToMany(User::class, 'job_applications')
+        ->withTimestamps();
     }
 
     public function getPostAtAttribute()
     {
         return $this->created_at->diffForHumans();
+    }
+
+    public function getShiftAttribute()
+    {
+        return $this->shift_start." to ".$this->shift_end;
     }
 
     public function jobInterviews()
