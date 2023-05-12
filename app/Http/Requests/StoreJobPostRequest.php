@@ -22,7 +22,12 @@ class StoreJobPostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => ['required','string','max:255'],
+            'salary_lower' => ['required','numeric'],
+            'salary_upper' => ['required','gt:salary_lower','numeric'],
+            'type' => ['required','string'],
+            'shift' => ['required','string'],
+            'description' => ['nullable','string'],
         ];
     }
 }

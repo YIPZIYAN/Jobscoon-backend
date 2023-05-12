@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\JobPost;
 use App\Http\Requests\StoreJobPostRequest;
 use App\Http\Requests\UpdateJobPostRequest;
+use App\Models\Company;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -34,7 +35,12 @@ class JobPostController extends Controller
      */
     public function store(StoreJobPostRequest $request)
     {
-        return JobPost::create($request->all());
+
+        $company = Company::findOrFail(Auth::user()->company_id);
+
+        $company->jobPosts()->create($request->all());
+
+        return response()->json();
     }
 
     /**
