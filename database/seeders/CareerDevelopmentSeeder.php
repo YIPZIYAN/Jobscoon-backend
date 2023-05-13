@@ -71,6 +71,6 @@ class CareerDevelopmentSeeder extends Seeder
                 'updated_at' => now(),
             ],
         ]);
-        CareerDevelopment::factory(10)->create();
+        // CareerDevelopment::factory(10)->create();
     }
 }
