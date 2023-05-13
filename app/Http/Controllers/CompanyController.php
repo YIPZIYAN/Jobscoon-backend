@@ -6,6 +6,7 @@ use App\Models\Company;
 use App\Http\Requests\StoreCompanyRequest;
 use App\Http\Requests\UpdateCompanyRequest;
 use Illuminate\Auth\Events\Validated;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
@@ -64,9 +65,13 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCompanyRequest $request, Company $company)
+    public function update(UpdateCompanyRequest $request)
     {
-        //
+        $company = Company::findOrFail(Auth::user()->company_id);
+
+        $company->update($request->all());
+
+        return response()->json();
     }
 
     /**
@@ -75,5 +80,10 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         //
+    }
+
+    public function myCompanyProfile()
+    {
+        return Company::findOrFail(Auth::user()->company_id);
     }
 }
