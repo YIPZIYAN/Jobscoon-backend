@@ -81,4 +81,24 @@ class JobApplicationController extends Controller
     {
         //
     }
+
+    public function acceptApplication($id)
+    {
+        $jobInterview = JobApplication::findOrFail($id);
+        $jobInterview->update([
+            'status' => 'accept',
+        ]);
+
+        return response()->json();
+    }
+
+    public function declineApplication($id)
+    {
+        $jobInterview = JobApplication::findOrFail($id);
+        $jobInterview->update([
+            'status' => 'declined',
+        ]);
+
+        return response()->json();
+    }
 }

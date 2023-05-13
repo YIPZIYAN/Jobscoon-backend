@@ -6,6 +6,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\JobInterviewController;
 use App\Http\Controllers\JobPostController;
+use App\Models\JobApplication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -49,12 +50,14 @@ Route::middleware(['auth:sanctum'])->group(function () {
     //job application
     Route::resource('jobapplication',JobApplicationController::class);
     Route::post('applyjob/{id}',[JobPostController::class,'applyJob']);
-    // Route::get('jobappliation/{id}/applicants',[JobApplicationController::class,'getApplicantsList']);
+    Route::post('acceptapplication/{id}',[JobApplicationController::class,'acceptApplication']);
+    Route::post('declineapplication/{id}',[JobApplicationController::class,'declineApplication']);
 
     //job interview
     Route::resource('jobinterview',JobInterviewController::class);
     Route::post('acceptinterview/{id}',[JobInterviewController::class,'acceptInterview']);
     Route::post('declineinterview/{id}',[JobInterviewController::class,'declineInterview']);
+
 
     //career
     Route::resource('careerdev',CareerDevelopmentController::class);
