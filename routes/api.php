@@ -63,5 +63,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('careerdev',CareerDevelopmentController::class);
     Route::post('applycareer/{id}',[CareerDevelopmentController::class,'applyCareer']);
     Route::post('cancelcareer/{id}',[CareerDevelopmentController::class,'cancelCareer']);
+    Route::get('careerdevapplicant/{id}',[CareerDevelopmentController::class,'applicants']);
 
 });

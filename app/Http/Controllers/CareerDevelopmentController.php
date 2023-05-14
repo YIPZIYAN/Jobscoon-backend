@@ -102,4 +102,13 @@ class CareerDevelopmentController extends Controller
 
         return response()->json();
     }
+
+    public function applicants($id)
+    {
+        $careerDev = CareerDevelopment::findOrFail($id);
+        $users = $careerDev->users()->without('company')
+        ->orderByDesc('career_development_applications.created_at')->get();
+
+        return $users;
+    }
 }
