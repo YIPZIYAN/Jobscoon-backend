@@ -33,6 +33,11 @@ class CareerDevelopment extends Model
         'is_applied',
     ];
 
+    protected $casts=[
+        'start_time' => 'datetime:H:i',
+        'end_time' => 'datetime:H:i',
+    ];
+
     public function users()
     {
         return $this->belongsToMany(User::class,'career_development_applications')
