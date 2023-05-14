@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\JobInterview;
 use App\Http\Requests\StoreJobInterviewRequest;
 use App\Http\Requests\UpdateJobInterviewRequest;
+use App\Models\JobPost;
 use Illuminate\Support\Facades\Auth;
 
 class JobInterviewController extends Controller
@@ -14,11 +15,20 @@ class JobInterviewController extends Controller
      */
     public function index()
     {
+        if (Auth::user()->is_employer) {
+
+            return JobInterview::with('user')
+                ->with('jobPost')
+                ->whereHas('jobPost.company', function ($query) {
+                    $query->where('company_id', Auth::user()->company_id);
+                })->get();
+        }
+
         return JobInterview::with('jobPost.company')
-        ->where('user_id',Auth::user()->id)
-        ->orderBy('date')
-        ->orderBy('start_time')
-        ->get();
+            ->where('user_id', Auth::user()->id)
+            ->orderBy('date')
+            ->orderBy('start_time')
+            ->get();
     }
 
     /**
@@ -41,7 +51,7 @@ class JobInterviewController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(JobInterview $jobInterview = null,$id)
+    public function show(JobInterview $jobInterview = null, $id)
     {
         JobInterview::findOrfail($id);
     }
@@ -65,9 +75,10 @@ class JobInterviewController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(JobInterview $jobInterview)
+    public function destroy(JobInterview $jobInterview,$id)
     {
-        //
+        JobInterview::findOrFail($id)->delete();
+        return response()->json();
     }
 
     public function acceptInterview($id)
