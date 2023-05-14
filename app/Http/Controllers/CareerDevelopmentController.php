@@ -68,7 +68,11 @@ class CareerDevelopmentController extends Controller
     public function update(UpdateCareerDevelopmentRequest $request, $id)
     {
         $careerDev = CareerDevelopment::findOrFail($id);
+        $noApply = $careerDev->max_capacity - $careerDev->capacity;
+
         $careerDev->update($request->all());
+
+        $careerDev->update(['capacity' => $request->max_capacity - $noApply]);
         return response()->json();
     }
 
