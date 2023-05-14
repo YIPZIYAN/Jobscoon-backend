@@ -48,7 +48,7 @@ class JobApplicationController extends Controller
 
         $users= $jobPost->users()
         ->without('company')
-        ->orderByDesc('job_applications.updated_at')->get();
+        ->orderByDesc('job_applications.created_at')->get();
 
         $users->each(function ($user) {
           $date  = Carbon::parse($user->pivot->created_at)->diffForHumans();

@@ -21,9 +21,7 @@ class JobPostController extends Controller
             JobPost::where('company_id', $user->company_id)
             ->orderByDesc('updated_at')
             ->get()
-            : JobPost::all()
-            ->orderByDesc('updated_at')
-            ;
+            : JobPost::orderByDesc('updated_at')->get();
     }
 
     /**

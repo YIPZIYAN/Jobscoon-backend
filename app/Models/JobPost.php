@@ -25,6 +25,7 @@ class JobPost extends Model
 
     protected $appends = [
         'post_at',
+        'edited_at',
         'salary',
         'is_applied',
         'shift',
@@ -38,8 +39,8 @@ class JobPost extends Model
     public function users()
     {
         return $this->belongsToMany(User::class, 'job_applications')
-        ->withTimestamps()
-        ->withPivot('status');
+            ->withTimestamps()
+            ->withPivot('status','id');
     }
 
     public function getPostAtAttribute()
@@ -47,9 +48,15 @@ class JobPost extends Model
         return $this->created_at->diffForHumans();
     }
 
+    public function getEditedAtAttribute()
+    {
+        return $this->created_at == $this->updated_at ?
+            null : "(Edited " . $this->updated_at->diffForHumans() . ")";
+    }
+
     public function getShiftAttribute()
     {
-        return $this->shift_start." to ".$this->shift_end;
+        return $this->shift_start . " to " . $this->shift_end;
     }
 
     public function jobInterviews()
