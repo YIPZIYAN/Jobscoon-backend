@@ -57,6 +57,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('jobinterview',JobInterviewController::class);
     Route::post('acceptinterview/{id}',[JobInterviewController::class,'acceptInterview']);
     Route::post('declineinterview/{id}',[JobInterviewController::class,'declineInterview']);
+    Route::post('scheduleinterview/{id}',[JobInterviewController::class,'scheduleInterview']);
 
 
     //career

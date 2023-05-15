@@ -77,4 +77,10 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(JobPost::class, 'job_applications');
     }
+
+    public function jobPostsInterview()
+    {
+        return $this->belongsToMany(JobPost::class, 'job_interviews')
+        ->withTimestamps();
+    }
 }

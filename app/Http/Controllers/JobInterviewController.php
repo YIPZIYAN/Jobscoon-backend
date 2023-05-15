@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\JobInterview;
 use App\Http\Requests\StoreJobInterviewRequest;
 use App\Http\Requests\UpdateJobInterviewRequest;
+use App\Models\JobApplication;
 use App\Models\JobPost;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class JobInterviewController extends Controller
@@ -42,7 +44,7 @@ class JobInterviewController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreJobInterviewRequest $request)
+    public function store(StoreJobInterviewRequest $request, $id)
     {
         JobInterview::create($request->all());
         return response()->json();
@@ -75,7 +77,7 @@ class JobInterviewController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(JobInterview $jobInterview,$id)
+    public function destroy(JobInterview $jobInterview, $id)
     {
         JobInterview::findOrFail($id)->delete();
         return response()->json();
@@ -97,6 +99,21 @@ class JobInterviewController extends Controller
         $jobInterview->update([
             'status' => 'declined',
         ]);
+
+        return response()->json();
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function scheduleInterview(StoreJobInterviewRequest $request, $id)
+    {
+        $jobApplication = JobApplication::findOrFail($id);
+
+        $jobPost = JobPost::findOrFail($jobApplication->job_post_id);
+        $user = User::findOrFail($jobApplication->user_id);
+
+        $user->jobPostsInterview()->attach($jobPost, $request->all());
 
         return response()->json();
     }

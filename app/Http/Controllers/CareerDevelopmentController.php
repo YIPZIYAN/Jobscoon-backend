@@ -7,6 +7,7 @@ use App\Http\Requests\StoreCareerDevelopmentRequest;
 use App\Http\Requests\UpdateCareerDevelopmentRequest;
 use App\Models\CareerDevelopmentApplication;
 use App\Models\Company;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class CareerDevelopmentController extends Controller
@@ -113,6 +114,10 @@ class CareerDevelopmentController extends Controller
         $users = $careerDev->users()->without('company')
         ->orderByDesc('career_development_applications.created_at')->get();
 
+        $users->each(function ($user) {
+            $date  = Carbon::parse($user->pivot->created_at)->diffForHumans();
+            $user->pivot->applied_at = $date;
+          });
         return $users;
     }
 }
