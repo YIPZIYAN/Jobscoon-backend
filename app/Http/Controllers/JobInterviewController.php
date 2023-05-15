@@ -69,9 +69,16 @@ class JobInterviewController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateJobInterviewRequest $request, JobInterview $jobInterview)
+    public function update(UpdateJobInterviewRequest $request, $id)
     {
-        //
+        $jobApplication = JobApplication::findOrFail($id);
+
+        $jobPost = JobPost::findOrFail($jobApplication->job_post_id);
+        $user = User::findOrFail($jobApplication->user_id);
+
+        $user->jobPostsInterview()->sync($jobPost, $request->all());
+
+        return response()->json();
     }
 
     /**
