@@ -39,7 +39,7 @@ class JobApplicationSeeder extends Seeder
             [
                 'job_post_id' => 6,
                 'user_id' => 2,
-                'status' => 'decline',
+                'status' => 'declined',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

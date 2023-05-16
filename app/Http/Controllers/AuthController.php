@@ -40,10 +40,13 @@ class AuthController extends Controller
     public function register(StoreUserRequest $request)
     {
         //user register
+        $tel = '+60'.$request->phone;
+        $companyTel = '+60'.$request->contact_number;
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'phone' => $request->phone,
+            'phone' => $tel,
             'description' => $request->description,
             'address' => $request->address,
             'password' => Hash::make($request->password),
@@ -56,7 +59,7 @@ class AuthController extends Controller
                 //new company register
                 $company = Company::firstOrCreate([
                     'name' => $request->company_name,
-                    'contact_number' => $request->contact_number,
+                    'contact_number' => $companyTel,
                     'email' => $request->company_email,
                     'reg_no' => $request->reg_no,
                     'location' => $request->company_location,
@@ -107,10 +110,12 @@ class AuthController extends Controller
 
     public function updateProfile(UpdateUserRequest $request)
     {
+        $tel = '+60'.$request->phone;
+
         Auth::user()->update([
             'name' => $request->name,
             'email' => $request->email,
-            'phone' => $request->phone,
+            'phone' => $tel,
             'description' => $request->description,
             'address' => $request->address,
         ]);

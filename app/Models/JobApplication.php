@@ -18,6 +18,16 @@ class JobApplication extends Model
         'created_at' => 'datetime:Y-m-d H:i:s',
         'updated_at' => 'datetime:Y-m-d H:i:s',
     ];
+        /**
+     * Prepare a date for array / JSON serialization.
+     *
+     * @param  \DateTimeInterface  $date
+     * @return string
+     */
+    protected function serializeDate(\DateTimeInterface $date)
+    {
+        return Carbon::instance($date)->setTimezone('Asia/Kuala_Lumpur')->toDateTimeString();
+    }
 
     public function user()
     {
