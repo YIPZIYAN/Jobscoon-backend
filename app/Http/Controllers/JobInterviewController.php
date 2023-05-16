@@ -32,6 +32,7 @@ class JobInterviewController extends Controller
 
         return JobInterview::with('jobPost.company')
             ->where('user_id', Auth::user()->id)
+            ->whereDate('date','>=',Carbon::today())
             ->orderBy('date')
             ->orderBy('start_time')
             ->get();
@@ -130,7 +131,6 @@ class JobInterviewController extends Controller
     public function getHistory()
     {
         if (Auth::user()->is_employer) {
-
             return JobInterview::with('user')
                 ->with('jobPost')
                 ->whereDate('date','<',Carbon::today())
@@ -140,5 +140,12 @@ class JobInterviewController extends Controller
                     $query->where('company_id', Auth::user()->company_id);
                 })->get();
         }
+
+        return JobInterview::with('jobPost.company')
+        ->where('user_id', Auth::user()->id)
+        ->whereDate('date','<',Carbon::today())
+        ->orderByDesc('date')
+        ->orderBy('start_time')
+        ->get();
     }
 }
