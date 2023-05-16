@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateJobInterviewRequest;
 use App\Models\JobApplication;
 use App\Models\JobPost;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class JobInterviewController extends Controller
@@ -21,6 +22,9 @@ class JobInterviewController extends Controller
 
             return JobInterview::with('user')
                 ->with('jobPost')
+                ->whereDate('date','>',Carbon::today())
+                ->orderBy('date')
+                ->orderBy('start_time')
                 ->whereHas('jobPost.company', function ($query) {
                     $query->where('company_id', Auth::user()->company_id);
                 })->get();
@@ -55,7 +59,7 @@ class JobInterviewController extends Controller
      */
     public function show(JobInterview $jobInterview = null, $id)
     {
-        JobInterview::findOrfail($id);
+        return JobInterview::findOrfail($id);
     }
 
     /**
@@ -71,12 +75,10 @@ class JobInterviewController extends Controller
      */
     public function update(UpdateJobInterviewRequest $request, $id)
     {
-        $jobApplication = JobApplication::findOrFail($id);
 
-        $jobPost = JobPost::findOrFail($jobApplication->job_post_id);
-        $user = User::findOrFail($jobApplication->user_id);
+        $jobInterview = JobInterview::findOrFail($id);
 
-        $user->jobPostsInterview()->sync($jobPost, $request->all());
+        $jobInterview->update($request->all());
 
         return response()->json();
     }
@@ -123,5 +125,20 @@ class JobInterviewController extends Controller
         $user->jobPostsInterview()->attach($jobPost, $request->all());
 
         return response()->json();
+    }
+
+    public function getHistory()
+    {
+        if (Auth::user()->is_employer) {
+
+            return JobInterview::with('user')
+                ->with('jobPost')
+                ->whereDate('date','<',Carbon::today())
+                ->orderBy('date')
+                ->orderBy('start_time')
+                ->whereHas('jobPost.company', function ($query) {
+                    $query->where('company_id', Auth::user()->company_id);
+                })->get();
+        }
     }
 }

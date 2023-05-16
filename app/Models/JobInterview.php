@@ -33,6 +33,8 @@ class JobInterview extends Model
     protected $casts = [
         'created_at' => 'datetime:Y-m-d H:i:s',
         'updated_at' => 'datetime:Y-m-d H:i:s',
+        'start_time' =>'datetime:H:i',
+        'end_time' =>'datetime:H:i',
     ];
 
     public function user()

@@ -58,7 +58,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('acceptinterview/{id}',[JobInterviewController::class,'acceptInterview']);
     Route::post('declineinterview/{id}',[JobInterviewController::class,'declineInterview']);
     Route::post('scheduleinterview/{id}',[JobInterviewController::class,'scheduleInterview']);
-
+    Route::get('interviewhistory',[JobInterviewController::class,'getHistory']);
 
     //career
     Route::resource('careerdev',CareerDevelopmentController::class);

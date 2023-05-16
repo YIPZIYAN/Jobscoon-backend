@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreJobInterviewRequest extends FormRequest
@@ -22,7 +23,7 @@ class StoreJobInterviewRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'date' => ['required','date'],
+            'date' => ['required','date','after_or_equal:today'],
             'start_time' => ['required','date_format:H:i'],
             'end_time' => ['required','date_format:H:i','after:start_time'],
             'type' => 'required',
