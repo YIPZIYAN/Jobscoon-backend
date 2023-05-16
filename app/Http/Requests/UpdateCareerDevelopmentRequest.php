@@ -28,7 +28,7 @@ class UpdateCareerDevelopmentRequest extends FormRequest
         return [
 
             'title' => ['required', 'string', 'max:255'],
-            'date_start' => ['required','date'],
+            'date_start' => ['required','date','after_or_equal:today'],
             'date_end' => ['required','date','after_or_equal:date_start'],
             'start_time' => ['required','date_format:H:i'],
             'end_time' => ['required','date_format:H:i','after:start_time'],
