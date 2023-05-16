@@ -81,6 +81,12 @@ class JobInterviewController extends Controller
 
         $jobInterview->update($request->all());
 
+        if($jobInterview->status == "declined"){
+            $jobInterview->update([
+                'status' =>'pending',
+            ]);
+        }
+
         return response()->json();
     }
 
