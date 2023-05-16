@@ -28,10 +28,10 @@ class UpdatePasswordRequest extends FormRequest
                 'required',
                 'confirmed',
                 'different:current_password',
-                // Password::min(8)
-                //     ->letters()
-                //     ->mixedCase()
-                //     ->numbers(),
+                Password::min(8)
+                    ->letters()
+                    ->mixedCase()
+                    ->numbers(),
             ]
         ];
     }
