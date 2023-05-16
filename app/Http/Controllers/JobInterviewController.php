@@ -22,7 +22,7 @@ class JobInterviewController extends Controller
 
             return JobInterview::with('user')
                 ->with('jobPost')
-                ->whereDate('date','>',Carbon::today())
+                ->whereDate('date','>=',Carbon::today())
                 ->orderBy('date')
                 ->orderBy('start_time')
                 ->whereHas('jobPost.company', function ($query) {
@@ -134,7 +134,7 @@ class JobInterviewController extends Controller
             return JobInterview::with('user')
                 ->with('jobPost')
                 ->whereDate('date','<',Carbon::today())
-                ->orderBy('date')
+                ->orderByDesc('date')
                 ->orderBy('start_time')
                 ->whereHas('jobPost.company', function ($query) {
                     $query->where('company_id', Auth::user()->company_id);
