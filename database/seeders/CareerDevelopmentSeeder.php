@@ -122,7 +122,6 @@ class CareerDevelopmentSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-
             [
                 'title' => 'Introduction to Python',
                 'date_start' => '2023-07-10',
@@ -140,7 +139,6 @@ class CareerDevelopmentSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-
             [
                 'title' => 'Financial Planning 101',
                 'date_start' => '2023-08-05',

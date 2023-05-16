@@ -35,7 +35,7 @@ class JobApplicationSeeder extends Seeder
                 'status' => 'accept',
                 'created_at' => now(),
                 'updated_at' => now(),
-            ]，
+            ],
             [
                 'job_post_id' => 6,
                 'user_id' => 2,
