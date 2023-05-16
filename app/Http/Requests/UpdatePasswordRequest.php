@@ -30,7 +30,6 @@ class UpdatePasswordRequest extends FormRequest
                 'different:current_password',
                 Password::min(8)
                     ->letters()
-                    ->mixedCase()
                     ->numbers(),
             ]
         ];

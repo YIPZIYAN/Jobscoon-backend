@@ -30,7 +30,7 @@ class StoreUserRequest extends FormRequest
             'phone' => ['required', 'digits_between:9,10', 'numeric'],
             'description' => ['nullable', 'string'],
             'address' => ['nullable', 'string', 'nullable'],
-            'password' => ['required', 'confirmed', Password::min(8)->letters()->mixedCase()->numbers()],
+            'password' => ['required', 'confirmed', Password::min(8)->letters()->numbers()],
 
             'is_new_company' => ['required_if:is_employer,true'],
             'search_company' => ['required_if:is_new_company,false'],
