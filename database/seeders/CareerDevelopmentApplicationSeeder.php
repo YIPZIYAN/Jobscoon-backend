@@ -17,13 +17,13 @@ class CareerDevelopmentApplicationSeeder extends Seeder
     {
         DB::table('career_development_applications')->insert([
             [
-                'user_id' => 1,
+                'user_id' => 2,
                 'career_development_id' => 1,
                 'created_at' => now(),
                 'updated_at' =>now(),
             ],
             [
-                'user_id' => 1,
+                'user_id' => 4,
                 'career_development_id' => 2,
                 'created_at' => now(),
                 'updated_at' =>now(),
@@ -43,12 +43,6 @@ class CareerDevelopmentApplicationSeeder extends Seeder
             [
                 'user_id' => 3,
                 'career_development_id' => 5,
-                'created_at' => now(),
-                'updated_at' =>now(),
-            ],
-            [
-                'user_id' => 2,
-                'career_development_id' => 1,
                 'created_at' => now(),
                 'updated_at' =>now(),
             ],
