@@ -22,8 +22,12 @@ class CareerDevelopmentController extends Controller
             CareerDevelopment::with('company')
             ->where('company_id', $user->company_id)
             ->get()
+
             : CareerDevelopment::with('company')
-            ->get();
+            ->get()
+            ->sortByDesc('is_applied')
+            ->values()
+            ->toArray();
     }
 
     /**
