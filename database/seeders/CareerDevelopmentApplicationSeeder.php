@@ -48,12 +48,6 @@ class CareerDevelopmentApplicationSeeder extends Seeder
             ],
             [
                 'user_id' => 2,
-                'career_development_id' => 4,
-                'created_at' => now(),
-                'updated_at' =>now(),
-            ],
-            [
-                'user_id' => 2,
                 'career_development_id' => 1,
                 'created_at' => now(),
                 'updated_at' =>now(),

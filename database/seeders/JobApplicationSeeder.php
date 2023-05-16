@@ -29,27 +29,13 @@ class JobApplicationSeeder extends Seeder
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
-            // [
-            //     'job_post_id' => 3,
-            //     'user_id' => 2,
-            //     'status' => 'decline',
-            //     'created_at' => now(),
-            //     'updated_at' => now(),
-            // ],
             [
                 'job_post_id' => 3,
                 'user_id' => 2,
                 'status' => 'accept',
                 'created_at' => now(),
                 'updated_at' => now(),
-            ],
-            [
-                'job_post_id' => 4,
-                'user_id' => 2,
-                'status' => 'pending',
-                'created_at' => now(),
-                'updated_at' => now(),
-            ],
+            ]，
             [
                 'job_post_id' => 6,
                 'user_id' => 2,
