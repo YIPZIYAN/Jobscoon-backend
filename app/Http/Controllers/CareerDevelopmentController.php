@@ -35,6 +35,7 @@ class CareerDevelopmentController extends Controller
      */
     public function create()
     {
+        
     }
 
     /**
