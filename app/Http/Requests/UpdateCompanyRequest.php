@@ -25,7 +25,7 @@ class UpdateCompanyRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'contact_number' => ['required', 'numeric'], // 'digits_between:9,10'
+            'contact_number' => ['required'], // 'digits_between:9,10'
             'email' => ['required', 'email'],
             'reg_no' => ['required', 'numeric', 'digits:12', Rule::unique('companies')->ignore(Auth::user()->company_id)],
             'location' => ['required', 'string'],

@@ -24,11 +24,10 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules(): array
     {
-
         return [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore(Auth::user()->id)],
-            'phone' => ['required', 'digits_between:9,10', 'numeric'],
+            'phone' => ['required', 'between:12,13'],
             'description' => ['nullable', 'string'],
             'address' => ['nullable', 'string'],
         ];

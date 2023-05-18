@@ -148,6 +148,7 @@ class JobInterviewController extends Controller
         }
 
         return JobInterview::with('jobPost.company')
+        ->with('user')
         ->where('user_id', Auth::user()->id)
         ->whereDate('date','<',Carbon::today())
         ->orderByDesc('date')

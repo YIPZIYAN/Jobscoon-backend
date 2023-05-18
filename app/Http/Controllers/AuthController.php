@@ -110,12 +110,10 @@ class AuthController extends Controller
 
     public function updateProfile(UpdateUserRequest $request)
     {
-        $tel = '+60'.$request->phone;
-
         Auth::user()->update([
             'name' => $request->name,
             'email' => $request->email,
-            'phone' => $tel,
+            'phone' => $request->phone,
             'description' => $request->description,
             'address' => $request->address,
         ]);
