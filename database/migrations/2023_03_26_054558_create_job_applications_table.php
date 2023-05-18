@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('job_applications', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(JobPost::class)->constrained();
-            $table->foreignIdFor(User::class)->constrained();
+            $table->foreignIdFor(JobPost::class)->constrained()->onDelete('cascade');            ;
+            $table->foreignIdFor(User::class)->constrained()->onDelete('cascade');
             $table->string('status')->default('pending');
             $table->timestamps();
         });
